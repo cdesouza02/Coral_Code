@@ -1,89 +1,89 @@
-,Date_initial_tag,Transect,Transect_num,Current_tag_num,Species,Meter,Meters_90,Direction,MaxDiameter,Height,PercentMortality,Notes,092022_Condition,092022_Percentage,102023_Condition,102023_Percentage,
-5,9/10/22,STRI Reef,1,5,CNAT,24.2,7.4,L,64,45,5,NA,Healthy,NA,CLP,50%,
-6,9/10/22,STRI Reef,1,6,CNAT,24.4,15,L,210,70,40,TL from physical damage,Healthy,NA,CLB,95%,
-16,9/10/22,STRI Reef,1,16,CNAT,32,10,L,95,30,10,could be a fragment of 2m nearby CNAT #6,Healthy,NA,CLP,100%,
-23,9/10/22,STRI Reef,1,23,CNAT,57.8,1,L,60,40,10,NA,Healthy,NA,CLB,100%,
-24,9/10/22,STRI Reef,1,24,CNAT,57.9,7,L,65,30,5,NA,Healthy,NA,CLP,70%,No pics
-26,9/10/22,STRI Reef,1,26,CNAT,55,7.9,L,80,25,50,NA,Healthy,NA,CLP ,100%,
-2,9/10/22,STRI Reef,1,2,MCAV,28.7,4.4,L,18,25,0,paling,Healthy,NA,CLP,5%,
-8,9/10/22,STRI Reef,1,8,MCAV,16.7,0.8,L,14,28,0,NA,Healthy,NA,Healthy,NA,
-11,9/10/22,STRI Reef,1,11,MCAV,7.3,5.6,L,25,18,0,paling,Healthy,NA,CLP ,95%,
-17,9/10/22,STRI Reef,1,17,MCAV,27.3,7.7,L,17,19,1,minor paling,Healthy,NA,CLP,15%,
-27,9/10/22,STRI Reef,1,27,MCAV,56.7,0.8,L,16,14,0,NA,Healthy,NA,CLP ,30%,
-4,9/10/22,STRI Reef,1,4,ORBI,24.7,6.8,L,130,68,35,frannularis,Healthy,NA,Healthy,NA,
-14,9/10/22,STRI Reef,1,14,ORBI,21.3,9.5,L,120,85,40,frannularis,Healthy,NA,CLP,20%,
-15,9/10/22,STRI Reef,1,15,ORBI,36,7.2,L,95,77,60,frannularis,Healthy,NA,CLP,20%,
-20,9/10/22,STRI Reef,1,20,ORBI,26,0.7,L,68,50,75,NA,Healthy,NA,CLP ,10%,
-25,9/10/22,STRI Reef,1,25,ORBI,55,7.8,L,24,25,10,NA,Healthy,NA,Healthy,NA,
-12,9/10/22,STRI Reef,1,12,PAST,7.4,5.7,L,16,10,5,NA,Healthy,NA,Healthy,NA,
-13,9/10/22,STRI Reef,1,13,PAST,9.5,6.4,L,14,9,2,NA,Healthy,NA,Healthy,NA,
-21,9/10/22,STRI Reef,1,21,PAST,30.8,4.8,L,13,7,0,NA,Healthy,NA,Healthy,NA,
-22,9/10/22,STRI Reef,1,22,PAST,30.5,5,L,16,10,2,NA,Healthy,NA,Healthy,NA,
-1,9/10/22,STRI Reef,1,1,SSID,30.6,0.7,R,30,25,2,NA,Healthy,NA,Healthy,NA,
-3,9/10/22,STRI Reef,1,3,SSID,30,1,L,35,17,10,NA,Healthy,NA,CLP,70%,
-7,9/10/22,STRI Reef,1,7,SSID,17.8,3.6,L,43,10,10,paling & sponge overgrowth,Healthy,NA,Healthy,NA,
-9,9/10/22,STRI Reef,1,9,SSID,8.6,1.4,R,55,33,30,NA,Healthy,NA,CLP ,10%,
-10,9/10/22,STRI Reef,1,10,SSID,1.6,0.6,R,45,30,15,NA,Healthy,NA,CLP ,5%,
-18,9/10/22,STRI Reef,1,18,SSID,27.1,8.5,L,35,17,5,NA,Healthy,NA,CLP,55%,
-19,9/10/22,STRI Reef,1,19,SSID,25.8,0.7,L,39,25,20,NA,Healthy,NA,Healthy,NA,
-30,9/11/22,Juan Point Reef,2,33,CNAT,2.3,4.5,R,40,16,10,NA,Healthy,NA,CLB,100%,
-31,9/11/22,Juan Point Reef,2,34,CNAT,4.1,5.5,L,35,8,5,NA,Healthy,NA,CLB ,60%,
-36,9/11/22,Juan Point Reef,2,39,CNAT,10.7,6.8,R,125,35,5,did not measure/count the dead adjacent ramet,Healthy,NA,CLP ,80%,
-41,9/11/22,Juan Point Reef,2,44,CNAT,37.2,6,R,130,70,10,NA,Healthy,NA,CLP ,10%,
-47,9/11/22,Juan Point Reef,2,50,CNAT,46,10.3,R,180,100,80,some damsel pred,Healthy,NA,CLP,80%,
-54,9/11/22,Juan Point Reef,2,57,CNAT,24.8,7,R,90,40,5,NA,Healthy,NA,CLP,90%,
-29,9/11/22,Juan Point Reef,2,32,MCAV,0.5,3.1,R,57,40,20,NA,Healthy,NA,Healthy,NA,
-33,9/11/22,Juan Point Reef,2,36,MCAV,12,0.1,R,76,45,20,NA,Healthy,NA,Healthy,NA,
-37,9/11/22,Juan Point Reef,2,40,MCAV,27.9,1.9,R,80,45,20,some old TL,Healthy,NA,Healthy,NA,
-39,9/11/22,Juan Point Reef,2,42,MCAV,28.9,3.4,R,32,30,5,NA,Healthy,NA,Healthy,NA,
-46,9/11/22,Juan Point Reef,2,49,MCAV,45.5,5,R,80,35,70,NA,Healthy,NA,Healthy,NA,
-49,9/11/22,Juan Point Reef,2,52,MCAV,32.2,1.7,L,55,65,15,NA,Healthy,NA,Healthy,NA,
-53,9/11/22,Juan Point Reef,2,56,MCAV,25,4.8,R,24,20,5,barnacles and icing sponge,Healthy,NA,Healthy,NA,
-28,9/11/22,Juan Point Reef,2,31,ORBI,-1,5.6,R,70,35,20,small bleached spot,Healthy,NA,Healthy,NA,
-40,9/11/22,Juan Point Reef,2,43,ORBI,37,5.4,R,150,60,40,NA,Healthy,NA,Healthy,NA,
-42,9/11/22,Juan Point Reef,2,45,ORBI,38.2,5.7,R,90,65,60,some OG (ERYT),Healthy,NA,Healthy,NA,
-44,9/11/22,Juan Point Reef,2,47,ORBI,40.5,0.3,R,55,20,10,didn't measure old dead,Healthy,NA,Healthy,NA,
-45,9/11/22,Juan Point Reef,2,48,ORBI,47,3.6,R,45,27,10,NA,Healthy,NA,Healthy,NA,
-48,9/11/22,Juan Point Reef,2,51,ORBI,47.3,9.7,R,115,40,15,some recent TL - competition?,Healthy,NA,Healthy,NA,
-32,9/11/22,Juan Point Reef,2,35,PAST,4.1,0.9,L,28,8,20,some old TL,Healthy,NA,Healthy,NA,
-43,9/11/22,Juan Point Reef,2,46,PAST,37.4,2.9,R,23,7,0,NA,Healthy,NA,Healthy,NA,
-50,9/11/22,Juan Point Reef,2,53,PAST,31.4,4.3,R,14,4,5,NA,Healthy,NA,Healthy,NA,
-51,9/11/22,Juan Point Reef,2,54,PAST,31.2,0.8,R,26,5,5,NA,Healthy,NA,Healthy,NA,
-55,9/11/22,Juan Point Reef,2,58,PAST,25,3.2,R,26,5,5,mucus sheathing,Healthy,NA,Healthy,NA,
-34,9/11/22,Juan Point Reef,2,37,SSID,13.2,0.2,L,45,15,30,minor DC/GA (~10%),Healthy,NA,CLB,5%,
-35,9/11/22,Juan Point Reef,2,38,SSID,12.2,2.9,L,33,6,5,NA,Healthy,NA,Healthy,NA,
-38,9/11/22,Juan Point Reef,2,41,SSID,27.8,2.1,R,27,6,2,NA,Healthy,NA,CLP,40%,
-52,9/11/22,Juan Point Reef,2,55,SSID,25.7,3.5,R,40,8,10,NA,Healthy,NA,CLB,60%,
-56,9/11/22,Juan Point Reef,2,59,SSID,4.9,3.6,R,45,15,10,some DC,Healthy,NA, CLB,15%,
-57,9/15/22,Crawl Cay,3,60,CNAT,4,0.7,R,160,65,10,NA,Healthy,NA,CLP,100%,
-58,9/15/22,Crawl Cay,3,61,CNAT,3.9,0.3,R,85,35,0,NA,Healthy,NA,CLP,30%,
-65,9/15/22,Crawl Cay,3,68,CNAT,8.3,0.8,R,155,53,0,NA,Healthy,NA,CLB;CLP ,25;75%,
-68,9/15/22,Crawl Cay,3,71,CNAT,8.7,0.3,L,110,45,0,NA,Healthy,NA,Healthy,NA,
-71,9/15/22,Crawl Cay,3,74,CNAT,19,0.1,R,110,70,5,tag loose,Healthy,NA,Healthy,NA,
-72,9/15/22,Crawl Cay,3,75,CNAT,20,0.1,R,100,40,15,tag loose,Healthy,NA,CLB;CLP ,35;65,
-73,9/15/22,Crawl Cay,3,76,CNAT,19.5,0.1,L,130,20,5,tag loose,Healthy,NA,CLP ,20%,
-61,9/15/22,Crawl Cay,3,64,MCAV,3.3,0.8,L,40,30,0,NA,Healthy,NA,Healthy,NA,
-62,9/15/22,Crawl Cay,3,65,MCAV,5.2,0.9,L,60,30,0,NA,Healthy,NA,Healthy,NA,
-66,9/15/22,Crawl Cay,3,69,MCAV,9.4,2.9,R,40,38,0,NA,Healthy,NA,Healthy,NA,
-75,9/15/22,Crawl Cay,3,78,MCAV,20.2,3.4,R,20,23,20,coral loose,Healthy,NA,Healthy,NA,
-79,9/15/22,Crawl Cay,3,82,MCAV,4.1,3,R,40,45,0,CLP 10%,Healthy,NA,CLP,10%,
-76,9/15/22,Crawl Cay,3,79,MMEA,13.5,4.3,R,12,5,0,NA,Healthy,NA,Healthy,NA,
-77,9/15/22,Crawl Cay,3,80,MMEA,13.1,2.4,R,20,15,0,tag far from coral,Healthy,NA,Healthy,NA,
-80,9/15/22,Crawl Cay,3,83,MMEA,2.5,1.1,R,16,4,0,NA,Healthy,NA,Healthy,NA,
-87,9/15/22,Crawl Cay,3,90,MMEA,0,0.2,R,18,4,1,"TL from sedimentation -- moved coral to beginning of transect, might get brick dropped on it",Healthy,NA,Healthy,NA,
-60,9/15/22,Crawl Cay,3,63,OANN,3.3,0.4,L,45,22,10,NA,Healthy,NA,Healthy,NA,
-88,9/15/22,Crawl Cay,3,29,OFAV,-1,1.3,L,140,30,10,NA,Healthy,NA,Healthy,NA,
-64,9/15/22,Crawl Cay,3,67,OFAV,7.3,1,L,105,45,20,NA,Healthy,NA,Healthy,NA,
-67,9/15/22,Crawl Cay,3,70,OFAV,9,3.4,R,60,10,0,tag on CNAT,Healthy,NA,Healthy,NA,
-59,9/15/22,Crawl Cay,3,62,PSTR,3.4,0.1,R,40,25,30,NA,Healthy,NA,CLP,10%,
-63,9/15/22,Crawl Cay,3,66,PSTR,5,0.5,L,45,5,5,NA,Healthy,NA,CLB,15%,
-69,9/15/22,Crawl Cay,3,72,PSTR,15,2.1,L,70,50,10,NA,Healthy,NA,CLB ,50%,
-70,9/15/22,Crawl Cay,3,73,PSTR,11.1,3.6,R,65,40,30,NA,Healthy,NA,CLB ,60%,
-74,9/15/22,Crawl Cay,3,77,PSTR,20.1,3.6,R,20,5,0,NA,Healthy,NA,CLP ,20%,
-83,9/15/22,Crawl Cay,3,86,PSTR,-1,6,L,80,30,2,NA,Healthy,NA,Healthy,NA,
-84,9/15/22,Crawl Cay,3,87,PSTR,1,5.9,L,120,55,5,NA,Healthy,NA,CLP,60%,
-78,9/15/22,Crawl Cay,3,81,SSID,5.7,1.7,R,45,25,5,coral pitted with some CLB,Healthy,NA,CLB,85%,
-81,9/15/22,Crawl Cay,3,84,SSID,2.3,0,R,34,15,10,CLP ~70% D&OG,Healthy,NA,CLP,70%,
-82,9/15/22,Crawl Cay,3,85,SSID,-1,5.6,L,38,14,5,CLP ~90%,Healthy,NA,CLP,90%,
-85,9/15/22,Crawl Cay,3,88,SSID,2,4.4,L,60,15,10,CLP ~10%,Healthy,NA,CLP,90%,
-86,9/15/22,Crawl Cay,3,89,SSID,1.5,5.9,L,38,22,10,CLP ~20%,Healthy,NA,CLB,40%,
+,Date_initial_tag,Transect,Transect_num,Current_tag_num,Species,Meter,Meters_90,Direction,MaxDiameter,Height,PercentMortality,Notes,092022_Condition,092022_Percentage,102023_Condition,102023_Percentage
+5,9/10/22,STRI Reef,1,5,CNAT,24.2,7.4,L,64,45,5,NA,Healthy,NA,CLP,50%
+6,9/10/22,STRI Reef,1,6,CNAT,24.4,15,L,210,70,40,TL from physical damage,Healthy,NA,CLB ,95%
+16,9/10/22,STRI Reef,1,16,CNAT,32,10,L,95,30,10,could be a fragment of 2m nearby CNAT #6,Healthy,NA,CLP,100%
+23,9/10/22,STRI Reef,1,23,CNAT,57.8,1,L,60,40,10,NA,Healthy,NA,CLB ,100%
+24,9/10/22,STRI Reef,1,24,CNAT,57.9,7,L,65,30,5,NA,Healthy,NA,CLP,70%
+26,9/10/22,STRI Reef,1,26,CNAT,55,7.9,L,80,25,50,NA,Healthy,NA,CLP,100%
+2,9/10/22,STRI Reef,1,2,MCAV,28.7,4.4,L,18,25,0,paling,Healthy,NA,CLP,5%
+8,9/10/22,STRI Reef,1,8,MCAV,16.7,0.8,L,14,28,0,NA,Healthy,NA,Healthy,NA
+11,9/10/22,STRI Reef,1,11,MCAV,7.3,5.6,L,25,18,0,paling,Healthy,NA,CLP,95%
+17,9/10/22,STRI Reef,1,17,MCAV,27.3,7.7,L,17,19,1,minor paling,Healthy,NA,CLP,15%
+27,9/10/22,STRI Reef,1,27,MCAV,56.7,0.8,L,16,14,0,NA,Healthy,NA,CLP,30%
+4,9/10/22,STRI Reef,1,4,ORBI,24.7,6.8,L,130,68,35,frannularis,Healthy,NA,Healthy,NA
+14,9/10/22,STRI Reef,1,14,ORBI,21.3,9.5,L,120,85,40,frannularis,Healthy,NA,CLP,20%
+15,9/10/22,STRI Reef,1,15,ORBI,36,7.2,L,95,77,60,frannularis,Healthy,NA,CLP,20%
+20,9/10/22,STRI Reef,1,20,ORBI,26,0.7,L,68,50,75,NA,Healthy,NA,CLP,10%
+25,9/10/22,STRI Reef,1,25,ORBI,55,7.8,L,24,25,10,NA,Healthy,NA,Healthy,NA
+12,9/10/22,STRI Reef,1,12,PAST,7.4,5.7,L,16,10,5,NA,Healthy,NA,Healthy,NA
+13,9/10/22,STRI Reef,1,13,PAST,9.5,6.4,L,14,9,2,NA,Healthy,NA,Healthy,NA
+21,9/10/22,STRI Reef,1,21,PAST,30.8,4.8,L,13,7,0,NA,Healthy,NA,Healthy,NA
+22,9/10/22,STRI Reef,1,22,PAST,30.5,5,L,16,10,2,NA,Healthy,NA,Healthy,NA
+1,9/10/22,STRI Reef,1,1,SSID,30.6,0.7,R,30,25,2,NA,Healthy,NA,Healthy,NA
+3,9/10/22,STRI Reef,1,3,SSID,30,1,L,35,17,10,NA,Healthy,NA,CLP,70%
+7,9/10/22,STRI Reef,1,7,SSID,17.8,3.6,L,43,10,10,paling & sponge overgrowth,Healthy,NA,Healthy,NA
+9,9/10/22,STRI Reef,1,9,SSID,8.6,1.4,R,55,33,30,NA,Healthy,NA,CLP,10%
+10,9/10/22,STRI Reef,1,10,SSID,1.6,0.6,R,45,30,15,NA,Healthy,NA,CLP,5%
+18,9/10/22,STRI Reef,1,18,SSID,27.1,8.5,L,35,17,5,NA,Healthy,NA,CLP,55%
+19,9/10/22,STRI Reef,1,19,SSID,25.8,0.7,L,39,25,20,NA,Healthy,NA,Healthy,NA
+30,9/11/22,Juan Point Reef,2,33,CNAT,2.3,4.5,R,40,16,10,NA,Healthy,NA,CLP,100%
+31,9/11/22,Juan Point Reef,2,34,CNAT,4.1,5.5,L,35,8,5,NA,Healthy,NA,CLP,60%
+36,9/11/22,Juan Point Reef,2,39,CNAT,10.7,6.8,R,125,35,5,did not measure/count the dead adjacent ramet,Healthy,NA,CLP,80%
+41,9/11/22,Juan Point Reef,2,44,CNAT,37.2,6,R,130,70,10,NA,Healthy,NA,CLP,10%
+47,9/11/22,Juan Point Reef,2,50,CNAT,46,10.3,R,180,100,80,some damsel pred,Healthy,NA,CLP,80%
+54,9/11/22,Juan Point Reef,2,57,CNAT,24.8,7,R,90,40,5,NA,Healthy,NA,CLP,90%
+29,9/11/22,Juan Point Reef,2,32,MCAV,0.5,3.1,R,57,40,20,NA,Healthy,NA,Healthy,NA
+33,9/11/22,Juan Point Reef,2,36,MCAV,12,0.1,R,76,45,20,NA,Healthy,NA,Healthy,NA
+37,9/11/22,Juan Point Reef,2,40,MCAV,27.9,1.9,R,80,45,20,some old TL,Healthy,NA,Healthy,NA
+39,9/11/22,Juan Point Reef,2,42,MCAV,28.9,3.4,R,32,30,5,NA,Healthy,NA,Healthy,NA
+46,9/11/22,Juan Point Reef,2,49,MCAV,45.5,5,R,80,35,70,NA,Healthy,NA,Healthy,NA
+49,9/11/22,Juan Point Reef,2,52,MCAV,32.2,1.7,L,55,65,15,NA,Healthy,NA,Healthy,NA
+53,9/11/22,Juan Point Reef,2,56,MCAV,25,4.8,R,24,20,5,barnacles and icing sponge,Healthy,NA,Healthy,NA
+28,9/11/22,Juan Point Reef,2,31,ORBI,-1,5.6,R,70,35,20,small bleached spot,Healthy,NA,Healthy,NA
+40,9/11/22,Juan Point Reef,2,43,ORBI,37,5.4,R,150,60,40,NA,Healthy,NA,Healthy,NA
+42,9/11/22,Juan Point Reef,2,45,ORBI,38.2,5.7,R,90,65,60,some OG (ERYT),Healthy,NA,Healthy,NA
+44,9/11/22,Juan Point Reef,2,47,ORBI,40.5,0.3,R,55,20,10,didn't measure old dead,Healthy,NA,Healthy,NA
+45,9/11/22,Juan Point Reef,2,48,ORBI,47,3.6,R,45,27,10,NA,Healthy,NA,Healthy,NA
+48,9/11/22,Juan Point Reef,2,51,ORBI,47.3,9.7,R,115,40,15,some recent TL - competition?,Healthy,NA,Healthy,NA
+32,9/11/22,Juan Point Reef,2,35,PAST,4.1,0.9,L,28,8,20,some old TL,Healthy,NA,Healthy,NA
+43,9/11/22,Juan Point Reef,2,46,PAST,37.4,2.9,R,23,7,0,NA,Healthy,NA,Healthy,NA
+50,9/11/22,Juan Point Reef,2,53,PAST,31.4,4.3,R,14,4,5,NA,Healthy,NA,Healthy,NA
+51,9/11/22,Juan Point Reef,2,54,PAST,31.2,0.8,R,26,5,5,NA,Healthy,NA,Healthy,NA
+55,9/11/22,Juan Point Reef,2,58,PAST,25,3.2,R,26,5,5,mucus sheathing,Healthy,NA,Healthy,NA
+34,9/11/22,Juan Point Reef,2,37,SSID,13.2,0.2,L,45,15,30,minor DC/GA (~10%),Healthy,NA,CLB ,5%
+35,9/11/22,Juan Point Reef,2,38,SSID,12.2,2.9,L,33,6,5,NA,Healthy,NA,Healthy,NA
+38,9/11/22,Juan Point Reef,2,41,SSID,27.8,2.1,R,27,6,2,NA,Healthy,NA,CLP,40%
+52,9/11/22,Juan Point Reef,2,55,SSID,25.7,3.5,R,40,8,10,NA,Healthy,NA,CLB ,60%
+56,9/11/22,Juan Point Reef,2,59,SSID,4.9,3.6,R,45,15,10,some DC,Healthy,NA,CLB ,15%
+57,9/15/22,Crawl Cay,3,60,CNAT,4,0.7,R,160,65,10,NA,Healthy,NA,CLP,100%
+58,9/15/22,Crawl Cay,3,61,CNAT,3.9,0.3,R,85,35,0,NA,Healthy,NA,CLP,30%
+65,9/15/22,Crawl Cay,3,68,CNAT,8.3,0.8,R,155,53,0,NA,Healthy,NA,CLB;CLP ,25;75%
+68,9/15/22,Crawl Cay,3,71,CNAT,8.7,0.3,L,110,45,0,NA,Healthy,NA,Healthy,NA
+71,9/15/22,Crawl Cay,3,74,CNAT,19,0.1,R,110,70,5,tag loose,Healthy,NA,Healthy,NA
+72,9/15/22,Crawl Cay,3,75,CNAT,20,0.1,R,100,40,15,tag loose,Healthy,NA,CLB;CLP ,35;65
+73,9/15/22,Crawl Cay,3,76,CNAT,19.5,0.1,L,130,20,5,tag loose,Healthy,NA,CLP,20%
+61,9/15/22,Crawl Cay,3,64,MCAV,3.3,0.8,L,40,30,0,NA,Healthy,NA,Healthy,NA
+62,9/15/22,Crawl Cay,3,65,MCAV,5.2,0.9,L,60,30,0,NA,Healthy,NA,Healthy,NA
+66,9/15/22,Crawl Cay,3,69,MCAV,9.4,2.9,R,40,38,0,NA,Healthy,NA,Healthy,NA
+75,9/15/22,Crawl Cay,3,78,MCAV,20.2,3.4,R,20,23,20,coral loose,Healthy,NA,Healthy,NA
+79,9/15/22,Crawl Cay,3,82,MCAV,4.1,3,R,40,45,0,CLP 10%,Healthy,NA,CLP,10%
+76,9/15/22,Crawl Cay,3,79,MMEA,13.5,4.3,R,12,5,0,NA,Healthy,NA,Healthy,NA
+77,9/15/22,Crawl Cay,3,80,MMEA,13.1,2.4,R,20,15,0,tag far from coral,Healthy,NA,Healthy,NA
+80,9/15/22,Crawl Cay,3,83,MMEA,2.5,1.1,R,16,4,0,NA,Healthy,NA,Healthy,NA
+87,9/15/22,Crawl Cay,3,90,MMEA,0,0.2,R,18,4,1,"TL from sedimentation -- moved coral to beginning of transect, might get brick dropped on it",Healthy,NA,Healthy,NA
+60,9/15/22,Crawl Cay,3,63,ORBI,3.3,0.4,L,45,22,10,NA,Healthy,NA,Healthy,NA
+88,9/15/22,Crawl Cay,3,29,ORBI,-1,1.3,L,140,30,10,NA,Healthy,NA,Healthy,NA
+64,9/15/22,Crawl Cay,3,67,ORBI,7.3,1,L,105,45,20,NA,Healthy,NA,Healthy,NA
+67,9/15/22,Crawl Cay,3,70,ORBI,9,3.4,R,60,10,0,tag on CNAT,Healthy,NA,Healthy,NA
+59,9/15/22,Crawl Cay,3,62,PSTR,3.4,0.1,R,40,25,30,NA,Healthy,NA,CLP,10%
+63,9/15/22,Crawl Cay,3,66,PSTR,5,0.5,L,45,5,5,NA,Healthy,NA,CLB ,15%
+69,9/15/22,Crawl Cay,3,72,PSTR,15,2.1,L,70,50,10,NA,Healthy,NA,CLB ,50%
+70,9/15/22,Crawl Cay,3,73,PSTR,11.1,3.6,R,65,40,30,NA,Healthy,NA,CLB ,60%
+74,9/15/22,Crawl Cay,3,77,PSTR,20.1,3.6,R,20,5,0,NA,Healthy,NA,CLP,20%
+83,9/15/22,Crawl Cay,3,86,PSTR,-1,6,L,80,30,2,NA,Healthy,NA,Healthy,NA
+84,9/15/22,Crawl Cay,3,87,PSTR,1,5.9,L,120,55,5,NA,Healthy,NA,CLP,60%
+78,9/15/22,Crawl Cay,3,81,SSID,5.7,1.7,R,45,25,5,coral pitted with some CLB,Healthy,NA,CLB ,85%
+81,9/15/22,Crawl Cay,3,84,SSID,2.3,0,R,34,15,10,CLP ~70% D&OG,Healthy,NA,CLP,70%
+82,9/15/22,Crawl Cay,3,85,SSID,-1,5.6,L,38,14,5,CLP ~90%,Healthy,NA,CLP,90%
+85,9/15/22,Crawl Cay,3,88,SSID,2,4.4,L,60,15,10,CLP ~10%,Healthy,NA,CLP,90%
+86,9/15/22,Crawl Cay,3,89,SSID,1.5,5.9,L,38,22,10,CLP ~20%,Healthy,NA,CLB ,40%
