@@ -195,23 +195,63 @@ SSID_filter <- color_loss %>%
 SSID_percentage <- mean(SSID_filter$Color_Loss == 1) * 100
 print(SSID_percentage)
 
-
 # renaming the Transect percentages
 cat("Percent of colonies in Crawl Cay that lost color in 2023:", crawl_percentage)
-
 cat("Percent of colonies in Juan Point that lost color in 2023:", juan_percentage)
-
 cat("Percent of colonies in the STRI Reef that lost color in 2023:", STRI_percentage)
-
 
 # renaming the species percentages 
 cat("Percent of CNAT colonies lost color in 2023:", CNAT_percentage)
-
 cat("Percent of MCAV colonies lost color in 2023:", MCAV_percentage)
-
 cat("Percent of ORBI colonies lost color in 2023:", ORBI_percentage)
-
 cat("Percent of PSTR colonies lost color in 2023:", PSTR_percentage)
-
 cat("Percent of SSID colonies lost color in 2023:", SSID_percentage)
+
+# New data frame focusing on the percentage bleached in T1 T2 species
+T1_T2_boxplot <- color_loss %>%
+  filter(Transect %in% c("STRI Reef", "Juan Point Reef")) %>%
+  select(Species, X102023_Percentage) %>%
+  pivot_longer(cols = X102023_Percentage, names_to = "T1_T2") %>%
+  mutate(value = as.numeric(gsub("%", "", value))) %>%
+  na.omit()
+# Display the modified data
+T1_T2_boxplot
+# box plot displaying percentage of color loss in species in STRI and Juan
+ggplot(T1_T2_boxplot) +
+  aes(x = "", y = value, fill = Species) +
+  geom_boxplot() +
+  scale_fill_hue(direction = 1) +
+  labs(
+    x = "Coral Colonies",
+    y = "Percentage Color Loss",
+    title = "Percentage of Color Loss in STRI Reef and Juan Point Reef",
+    fill = "Species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# new data fram focusing on the percentage belached in T3 
+T3_boxplot <- color_loss[color_loss$Transect == "Crawl Cay",] %>%
+  select(Species, X102023_Percentage) %>%
+  pivot_longer(cols = X102023_Percentage, names_to = "T3") %>%
+  mutate(value = as.numeric(gsub("%", "", value))) %>%
+  na.omit()
+T3_boxplot
+# box plot displaying percentage of color loss in species in Crawl Cay
+ggplot(T3_boxplot) +
+  aes(x = "", y = value, fill = Species) +
+  geom_boxplot() +
+  scale_fill_hue(direction = 1) +
+  labs(
+    x = "Coral Colonies",
+    y = "Percentage Color Loss",
+    title = "Percentage of Color Loss in Crawl Cay",
+    fill = "Species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+
+
 
