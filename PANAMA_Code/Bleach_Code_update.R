@@ -252,6 +252,95 @@ ggplot(T3_boxplot) +
   theme(legend.position = "bottom")
 
 
+# new data fram focusing on the percentage belached in all 
+all_boxplot <- color_loss %>%
+  select(Species, X102023_Percentage) %>%
+  pivot_longer(cols = X102023_Percentage) %>%
+  mutate(value = as.numeric(gsub("%", "", value))) %>%
+  na.omit()
+all_boxplot
+# box plot displaying percentage of color loss in Corals by Species
+ggplot(all_boxplot) +
+  aes(x = "", y = value, fill = Species) +
+  geom_boxplot() +
+  scale_fill_hue(direction = 1) +
+  labs(
+    x = "Coral Colonies",
+    y = "Percentage Color Loss",
+    title = "Percentage of Color Loss in Corals by Species",
+    fill = "Species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# new data fram focusing on the percentage belached in T1 
+T1_boxplot <- color_loss[color_loss$Transect == "STRI",] %>%
+  select(Species, X102023_Percentage) %>%
+  pivot_longer(cols = X102023_Percentage, names_to = "T1") %>%
+  mutate(value = as.numeric(gsub("%", "", value))) %>%
+  na.omit()
+T1_boxplot
+
+# box plot displaying percentage of color loss in species in STRI Reef
+ggplot(T1_boxplot) +
+  aes(x = "", y = value, fill = Species) +
+  geom_boxplot() +
+  scale_fill_hue(direction = 1) +
+  labs( x = "Coral Colonies", y = "Percentage Color Loss", title = "Percentage of Color Loss in STRI Reef", fill = "Species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
 
 
+ # new data fram focusing on the percentage belached in T2 
+T2_boxplot <- color_loss[color_loss$Transect == "Juan Point Reef",] %>%
+select(Species, X102023_Percentage) %>%
+pivot_longer(cols = X102023_Percentage, names_to = "T2") %>%
+mutate(value = as.numeric(gsub("%", "", value))) %>%
+na.omit()
+T2_boxplot
+
+# box plot displaying percentage of color loss in species in Juan Point
+ggplot(T2_boxplot) +
+aes(x = "", y = value, fill = Species) +
+geom_boxplot() +
+scale_fill_hue(direction = 1) +
+labs( x = "Coral Colonies", y = "Percentage Color Loss", title = "Percentage of Color Loss in Juan Point", fill = "Species"
+) +
+theme_minimal() +
+theme(legend.position = "bottom")
+
+#Finding significance between species
+ speciesmod <- glmer(Color_Loss ~ Species+
+                        (1|Transect),
+                      data=color_loss,family="poisson")
+summary(speciesmod)
+anova(speciesmod)
+nullmod <- glmer(Color_Loss ~ 1+
+                     (1|Transect),
+                   data=color_loss,family="poisson")
+lr_test=anova(nullmod, speciesmod, test="Chisq")
+lr_test
+library(lsmeans)
+lsmeans(speciesmod, pairwise~Species, contrasts="tukey")
+install.packages(emmeans)
+library(emmeans)
+emmeans(speciesmod, pairwise~Species, contrasts="tukey")
+
+#finding significance between transects
+common_species <- color_loss %>%
+  filter(Species %in% c("CNAT", "MCAV", "SSID", "ORBI")) %>%
+  select(Transect, Species, Sep_2022, Oct_2023, Color_Loss)
+View(common_species)
+transectmod <- glmer(Color_Loss ~ Transect + (1|Species), data = common_species, family = "poisson")
+summary(transectmod)
+anova(transectmod)
+# Fit the null model to the same dataset as transectmod
+null_transectmod <- glmer(Color_Loss ~ 1 + (1|Transect), data = color_loss, family = "poisson")
+# Perform likelihood ratio test
+lr_test <- anova(transectmod, test = "Chisq")
+lr_test
+
+library(emmeans)
+emmeans(transectmod, pairwise~Transect, contrasts="tukey")
 
