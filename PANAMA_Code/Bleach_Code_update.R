@@ -1,8 +1,13 @@
+install.packages("dpylr")
+install.packages("tidyverse")
+install.packages("tidyr")
+install.packages("ggplot2")
+install.packages("ggpattern")
+install.packages("lme4")
 library(dplyr)
 library(tidyr)
 library(tidyverse)
-library(ggplot2)
-library(vegan)
+library(ggpattern)
 library(lme4)
 
 head(PAN.BDT_ColonyData_copy)
@@ -30,13 +35,13 @@ combined_colony_data$name <- factor(combined_colony_data$name, levels = c("Sep_2
 ggplot(combined_colony_data) +
   aes(x = name, fill = value) +
   geom_bar() +
-  scale_fill_brewer(palette = "PRGn", 
+  scale_fill_brewer(palette = "YIOrBr", 
                     direction = 1) +
   labs(x = "Date Sampled", y = "# of Colonies", title = "Bleaching in Three Reefs Over Time", fill = "Condition") +
   theme_minimal() +
   facet_wrap(vars(Transect))
 
-#making a data frame that isolates transect and condition
+#making a data frame that isolates species and condition
 species_colony_data <- PAN.BDT_ColonyData_copy %>%
   select(Species, Sep_2022, Oct_2023) %>%
   pivot_longer(cols = c(Sep_2022, Oct_2023))
@@ -47,7 +52,7 @@ species_colony_data$name <- factor(species_colony_data$name, levels = c("Sep_202
 
 # Comparing before and after health of all species
 library(ggplot2)
-ggplot(species_colony_data) +
+species_fig=ggplot(species_colony_data) +
   aes(x = name, fill = value) +
   geom_bar() +
   scale_fill_brewer(palette = "PRGn", 
@@ -343,4 +348,37 @@ lr_test
 
 library(emmeans)
 emmeans(transectmod, pairwise~Transect, contrasts="tukey")
+
+
+# new format for a stacked bar graph
+
+#making data frame
+#making a data frame that isolates transect and condition
+dataframe <- PAN.BDT_ColonyData_copy %>%
+  select(Transect, Sep_2022, Oct_2023) %>%
+  pivot_longer(cols = c(Sep_2022, Oct_2023))
+dataframe
+
+#changing order of dates and condition
+dateframe$name <- factor(dataframe$name, levels = c("Sep_2022", "Oct_2023"))
+dataframe$value <- factor(dataframe$value, levels = c("Bleached", "Paled", "Healthy"))
+
+# making plot
+
+#define custom colors
+my_colors <- c("blanchedalmond", "darkorange", "firebrick")
+# Create the plot
+datafram_plot <- ggplot(dataframe) +
+  aes(x = name, fill = value) +
+  geom_bar() +
+  scale_fill_manual(values = my_colors) +
+  labs(x = "Date Sampled", y = "# of Colonies", title = "Bleaching of Coral Species Over Time", fill = "Condition") +
+  theme_minimal() +
+  theme(legend.position = "bottom", text = element_text(size=10),
+        plot.background = element_rect(fill = "lightgrey")) +  # Set the background color to light grey
+  facet_wrap(vars(Species), ncol = 10L)
+
+# Save the plot as a PNG file
+ggsave("dataframe_plot.png", plot = dataframe_plot, width = 10, height = 6, units = "in", dpi = 300)
+
 
