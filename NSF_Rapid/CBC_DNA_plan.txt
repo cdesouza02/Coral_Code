@@ -1,0 +1,1758 @@
+
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin20
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.80 (8416) x86_64-apple-darwin20]
+
+Warning: namespace ‘lme4’ is not available and has been replaced
+by .GlobalEnv when processing object ‘null_transectmod’
+2024-10-07 10:35:30.119 R[7400:339542] +[IMKClient subclass]: chose IMKClient_Legacy
+[Workspace restored from /Users/carolinedesouza/.RData]
+[History restored from /Users/carolinedesouza/.Rapp.history]
+
+2024-10-07 10:35:31.931 R[7400:339542] +[IMKInputSession subclass]: chose IMKInputSession_Legacy
+2024-10-07 10:35:37.551 R[7400:339542] The class 'NSOpenPanel' overrides the method identifier.  This method is implemented by class 'NSWindow'
+> getwd()
+[1] "/Users/carolinedesouza"
+> setwd("/Users/carolinedesouza/Documents/SCTLD")
+>  # Read the data from CSV filedata <- read.csv("organized_counts.csv")
+> 
+> # Load necessary library
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+> 
+> # Read the data from CSV file
+> data <- read.csv("copy_CBC_samples.csv")
+> 
+> # Create a contingency table
+> contingency_table <- table(data$Month_Year, data$Health_Status, data$Species)
+> 
+> # Convert the contingency table to a data frame
+> counts_df <- as.data.frame(contingency_table)
+> 
+> # Rename the columns for clarity
+> colnames(counts_df) <- c("Month_Year", "Health_Status", "Species", "Count")
+> prinprint(contingency_table)
+Error in prinprint(contingency_table) : 
+  could not find function "prinprint"
+> print(contingency_table)
+, ,  = CNAT
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0       0
+  22024                0               0               0               0       0       0
+  42024                0               0               0               0       0       0
+  62024                0               0               0               0       0       0
+  82024                0               0               0               0       0       0
+  92023                0               0               0               0       0       1
+  112023               0               0               0               0       0       0
+  122023               0               0               0               0       0       0
+
+, ,  = DLAB
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0       0
+  22024                0               0               0               0       0       0
+  42024                0               0               0               0       0       8
+  62024                0               0               0               0       0       0
+  82024                0               0               0               0       0       0
+  92023                0               1               0               1       0       7
+  112023               0               0               0               0       0       0
+  122023               0               0               0               0       0       0
+
+, ,  = MCAV
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0      15
+  22024                1               0               1               0       0       9
+  42024                0               0               0               0       0      25
+  62024                0               1               0               1       0       9
+  82024                0               0               0               0      10       0
+  92023                0               0               0               0       0      14
+  112023               0               0               0               0       0      10
+  122023               0               0               0               0       0      10
+
+, ,  = OANN
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0       8
+  22024                0               0               0               0       0       1
+  42024                0               0               0               2       0      17
+  62024                0               0               0               0       0       1
+  82024                0               0               0               0       2       0
+  92023                0               4               0               4       0       4
+  112023               0               0               0               0       0       0
+  122023               0               0               0               0       0       0
+
+, ,  = OFAV
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0      12
+  22024                0               0               0               0       0       6
+  42024                0               0               0               0       0      24
+  62024                0               0               0               0       0       6
+  82024                0               0               0               0       5       0
+  92023                0               4               0               4       0       7
+  112023               0               0               0               0       0       6
+  122023               0               0               0               0       0       6
+
+, ,  = OFAV/OANN
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0       0
+  22024                0               0               0               0       0       0
+  42024                0               0               0               0       0       0
+  62024                0               0               0               0       0       0
+  82024                0               0               0               0       0       0
+  92023                0               0               0               0       0       0
+  112023               0               0               0               0       0       1
+  122023               0               0               0               0       0       1
+
+, ,  = PAST
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0      11
+  22024                0               0               0               0       0       6
+  42024                0               0               0               0       0      19
+  62024                0               0               0               0       0       7
+  82024                0               0               0               0       6       0
+  92023                0               0               0               0       0      15
+  112023               0               0               0               0       0       8
+  122023               0               0               0               0       0       8
+
+, ,  = PSTR
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0      11
+  22024                0               0               0               0       0       5
+  42024                2               0               2               0       0      18
+  62024                0               0               0               0       0       5
+  82024                0               0               0               0       5       0
+  92023                0               1               0               1       0       8
+  112023               0               0               0               0       0       5
+  122023               0               0               0               0       0       5
+
+, ,  = SSID
+
+        
+         Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+  12024                0               0               0               0       0      12
+  22024                1               0               1               0       0       5
+  42024               15               1              10               1       0      15
+  62024                0               1               0               3       0       3
+  82024                0               0               0               0       6       0
+  92023                0              16               0               9       0       8
+  112023               0               0               0               0       0       6
+  122023               0               0               0               0       0       6
+
+> counts_df <- as.data.frame(contingency_table)
+> colnames(counts_df) <- c("Health_Status", "Month_Year", "Species", "Count")
+> print(head(counts_df))  # Check the first few rows
+  Health_Status      Month_Year Species Count
+1         12024 Diseased_margin    CNAT     0
+2         22024 Diseased_margin    CNAT     0
+3         42024 Diseased_margin    CNAT     0
+4         62024 Diseased_margin    CNAT     0
+5         82024 Diseased_margin    CNAT     0
+6         92023 Diseased_margin    CNAT     0
+> # Ensure the reshaping groups properly by Health_Status and Species
+> matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
+Error in dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count",  : 
+  could not find function "dcast"
+> 
+> # Check the resulting matrix
+> print(matrix_counts)
+Error: object 'matrix_counts' not found
+> 
+> print(counts_df)
+    Health_Status      Month_Year   Species Count
+1           12024 Diseased_margin      CNAT     0
+2           22024 Diseased_margin      CNAT     0
+3           42024 Diseased_margin      CNAT     0
+4           62024 Diseased_margin      CNAT     0
+5           82024 Diseased_margin      CNAT     0
+6           92023 Diseased_margin      CNAT     0
+7          112023 Diseased_margin      CNAT     0
+8          122023 Diseased_margin      CNAT     0
+9           12024 Diseased_Margin      CNAT     0
+10          22024 Diseased_Margin      CNAT     0
+11          42024 Diseased_Margin      CNAT     0
+12          62024 Diseased_Margin      CNAT     0
+13          82024 Diseased_Margin      CNAT     0
+14          92023 Diseased_Margin      CNAT     0
+15         112023 Diseased_Margin      CNAT     0
+16         122023 Diseased_Margin      CNAT     0
+17          12024 Diseased_tissue      CNAT     0
+18          22024 Diseased_tissue      CNAT     0
+19          42024 Diseased_tissue      CNAT     0
+20          62024 Diseased_tissue      CNAT     0
+21          82024 Diseased_tissue      CNAT     0
+22          92023 Diseased_tissue      CNAT     0
+23         112023 Diseased_tissue      CNAT     0
+24         122023 Diseased_tissue      CNAT     0
+25          12024 Diseased_Tissue      CNAT     0
+26          22024 Diseased_Tissue      CNAT     0
+27          42024 Diseased_Tissue      CNAT     0
+28          62024 Diseased_Tissue      CNAT     0
+29          82024 Diseased_Tissue      CNAT     0
+30          92023 Diseased_Tissue      CNAT     0
+31         112023 Diseased_Tissue      CNAT     0
+32         122023 Diseased_Tissue      CNAT     0
+33          12024         healthy      CNAT     0
+34          22024         healthy      CNAT     0
+35          42024         healthy      CNAT     0
+36          62024         healthy      CNAT     0
+37          82024         healthy      CNAT     0
+38          92023         healthy      CNAT     0
+39         112023         healthy      CNAT     0
+40         122023         healthy      CNAT     0
+41          12024         Healthy      CNAT     0
+42          22024         Healthy      CNAT     0
+43          42024         Healthy      CNAT     0
+44          62024         Healthy      CNAT     0
+45          82024         Healthy      CNAT     0
+46          92023         Healthy      CNAT     1
+47         112023         Healthy      CNAT     0
+48         122023         Healthy      CNAT     0
+49          12024 Diseased_margin      DLAB     0
+50          22024 Diseased_margin      DLAB     0
+51          42024 Diseased_margin      DLAB     0
+52          62024 Diseased_margin      DLAB     0
+53          82024 Diseased_margin      DLAB     0
+54          92023 Diseased_margin      DLAB     0
+55         112023 Diseased_margin      DLAB     0
+56         122023 Diseased_margin      DLAB     0
+57          12024 Diseased_Margin      DLAB     0
+58          22024 Diseased_Margin      DLAB     0
+59          42024 Diseased_Margin      DLAB     0
+60          62024 Diseased_Margin      DLAB     0
+61          82024 Diseased_Margin      DLAB     0
+62          92023 Diseased_Margin      DLAB     1
+63         112023 Diseased_Margin      DLAB     0
+64         122023 Diseased_Margin      DLAB     0
+65          12024 Diseased_tissue      DLAB     0
+66          22024 Diseased_tissue      DLAB     0
+67          42024 Diseased_tissue      DLAB     0
+68          62024 Diseased_tissue      DLAB     0
+69          82024 Diseased_tissue      DLAB     0
+70          92023 Diseased_tissue      DLAB     0
+71         112023 Diseased_tissue      DLAB     0
+72         122023 Diseased_tissue      DLAB     0
+73          12024 Diseased_Tissue      DLAB     0
+74          22024 Diseased_Tissue      DLAB     0
+75          42024 Diseased_Tissue      DLAB     0
+76          62024 Diseased_Tissue      DLAB     0
+77          82024 Diseased_Tissue      DLAB     0
+78          92023 Diseased_Tissue      DLAB     1
+79         112023 Diseased_Tissue      DLAB     0
+80         122023 Diseased_Tissue      DLAB     0
+81          12024         healthy      DLAB     0
+82          22024         healthy      DLAB     0
+83          42024         healthy      DLAB     0
+84          62024         healthy      DLAB     0
+85          82024         healthy      DLAB     0
+86          92023         healthy      DLAB     0
+87         112023         healthy      DLAB     0
+88         122023         healthy      DLAB     0
+89          12024         Healthy      DLAB     0
+90          22024         Healthy      DLAB     0
+91          42024         Healthy      DLAB     8
+92          62024         Healthy      DLAB     0
+93          82024         Healthy      DLAB     0
+94          92023         Healthy      DLAB     7
+95         112023         Healthy      DLAB     0
+96         122023         Healthy      DLAB     0
+97          12024 Diseased_margin      MCAV     0
+98          22024 Diseased_margin      MCAV     1
+99          42024 Diseased_margin      MCAV     0
+100         62024 Diseased_margin      MCAV     0
+101         82024 Diseased_margin      MCAV     0
+102         92023 Diseased_margin      MCAV     0
+103        112023 Diseased_margin      MCAV     0
+104        122023 Diseased_margin      MCAV     0
+105         12024 Diseased_Margin      MCAV     0
+106         22024 Diseased_Margin      MCAV     0
+107         42024 Diseased_Margin      MCAV     0
+108         62024 Diseased_Margin      MCAV     1
+109         82024 Diseased_Margin      MCAV     0
+110         92023 Diseased_Margin      MCAV     0
+111        112023 Diseased_Margin      MCAV     0
+112        122023 Diseased_Margin      MCAV     0
+113         12024 Diseased_tissue      MCAV     0
+114         22024 Diseased_tissue      MCAV     1
+115         42024 Diseased_tissue      MCAV     0
+116         62024 Diseased_tissue      MCAV     0
+117         82024 Diseased_tissue      MCAV     0
+118         92023 Diseased_tissue      MCAV     0
+119        112023 Diseased_tissue      MCAV     0
+120        122023 Diseased_tissue      MCAV     0
+121         12024 Diseased_Tissue      MCAV     0
+122         22024 Diseased_Tissue      MCAV     0
+123         42024 Diseased_Tissue      MCAV     0
+124         62024 Diseased_Tissue      MCAV     1
+125         82024 Diseased_Tissue      MCAV     0
+126         92023 Diseased_Tissue      MCAV     0
+127        112023 Diseased_Tissue      MCAV     0
+128        122023 Diseased_Tissue      MCAV     0
+129         12024         healthy      MCAV     0
+130         22024         healthy      MCAV     0
+131         42024         healthy      MCAV     0
+132         62024         healthy      MCAV     0
+133         82024         healthy      MCAV    10
+134         92023         healthy      MCAV     0
+135        112023         healthy      MCAV     0
+136        122023         healthy      MCAV     0
+137         12024         Healthy      MCAV    15
+138         22024         Healthy      MCAV     9
+139         42024         Healthy      MCAV    25
+140         62024         Healthy      MCAV     9
+141         82024         Healthy      MCAV     0
+142         92023         Healthy      MCAV    14
+143        112023         Healthy      MCAV    10
+144        122023         Healthy      MCAV    10
+145         12024 Diseased_margin      OANN     0
+146         22024 Diseased_margin      OANN     0
+147         42024 Diseased_margin      OANN     0
+148         62024 Diseased_margin      OANN     0
+149         82024 Diseased_margin      OANN     0
+150         92023 Diseased_margin      OANN     0
+151        112023 Diseased_margin      OANN     0
+152        122023 Diseased_margin      OANN     0
+153         12024 Diseased_Margin      OANN     0
+154         22024 Diseased_Margin      OANN     0
+155         42024 Diseased_Margin      OANN     0
+156         62024 Diseased_Margin      OANN     0
+157         82024 Diseased_Margin      OANN     0
+158         92023 Diseased_Margin      OANN     4
+159        112023 Diseased_Margin      OANN     0
+160        122023 Diseased_Margin      OANN     0
+161         12024 Diseased_tissue      OANN     0
+162         22024 Diseased_tissue      OANN     0
+163         42024 Diseased_tissue      OANN     0
+164         62024 Diseased_tissue      OANN     0
+165         82024 Diseased_tissue      OANN     0
+166         92023 Diseased_tissue      OANN     0
+167        112023 Diseased_tissue      OANN     0
+168        122023 Diseased_tissue      OANN     0
+169         12024 Diseased_Tissue      OANN     0
+170         22024 Diseased_Tissue      OANN     0
+171         42024 Diseased_Tissue      OANN     2
+172         62024 Diseased_Tissue      OANN     0
+173         82024 Diseased_Tissue      OANN     0
+174         92023 Diseased_Tissue      OANN     4
+175        112023 Diseased_Tissue      OANN     0
+176        122023 Diseased_Tissue      OANN     0
+177         12024         healthy      OANN     0
+178         22024         healthy      OANN     0
+179         42024         healthy      OANN     0
+180         62024         healthy      OANN     0
+181         82024         healthy      OANN     2
+182         92023         healthy      OANN     0
+183        112023         healthy      OANN     0
+184        122023         healthy      OANN     0
+185         12024         Healthy      OANN     8
+186         22024         Healthy      OANN     1
+187         42024         Healthy      OANN    17
+188         62024         Healthy      OANN     1
+189         82024         Healthy      OANN     0
+190         92023         Healthy      OANN     4
+191        112023         Healthy      OANN     0
+192        122023         Healthy      OANN     0
+193         12024 Diseased_margin      OFAV     0
+194         22024 Diseased_margin      OFAV     0
+195         42024 Diseased_margin      OFAV     0
+196         62024 Diseased_margin      OFAV     0
+197         82024 Diseased_margin      OFAV     0
+198         92023 Diseased_margin      OFAV     0
+199        112023 Diseased_margin      OFAV     0
+200        122023 Diseased_margin      OFAV     0
+201         12024 Diseased_Margin      OFAV     0
+202         22024 Diseased_Margin      OFAV     0
+203         42024 Diseased_Margin      OFAV     0
+204         62024 Diseased_Margin      OFAV     0
+205         82024 Diseased_Margin      OFAV     0
+206         92023 Diseased_Margin      OFAV     4
+207        112023 Diseased_Margin      OFAV     0
+208        122023 Diseased_Margin      OFAV     0
+209         12024 Diseased_tissue      OFAV     0
+210         22024 Diseased_tissue      OFAV     0
+211         42024 Diseased_tissue      OFAV     0
+212         62024 Diseased_tissue      OFAV     0
+213         82024 Diseased_tissue      OFAV     0
+214         92023 Diseased_tissue      OFAV     0
+215        112023 Diseased_tissue      OFAV     0
+216        122023 Diseased_tissue      OFAV     0
+217         12024 Diseased_Tissue      OFAV     0
+218         22024 Diseased_Tissue      OFAV     0
+219         42024 Diseased_Tissue      OFAV     0
+220         62024 Diseased_Tissue      OFAV     0
+221         82024 Diseased_Tissue      OFAV     0
+222         92023 Diseased_Tissue      OFAV     4
+223        112023 Diseased_Tissue      OFAV     0
+224        122023 Diseased_Tissue      OFAV     0
+225         12024         healthy      OFAV     0
+226         22024         healthy      OFAV     0
+227         42024         healthy      OFAV     0
+228         62024         healthy      OFAV     0
+229         82024         healthy      OFAV     5
+230         92023         healthy      OFAV     0
+231        112023         healthy      OFAV     0
+232        122023         healthy      OFAV     0
+233         12024         Healthy      OFAV    12
+234         22024         Healthy      OFAV     6
+235         42024         Healthy      OFAV    24
+236         62024         Healthy      OFAV     6
+237         82024         Healthy      OFAV     0
+238         92023         Healthy      OFAV     7
+239        112023         Healthy      OFAV     6
+240        122023         Healthy      OFAV     6
+241         12024 Diseased_margin OFAV/OANN     0
+242         22024 Diseased_margin OFAV/OANN     0
+243         42024 Diseased_margin OFAV/OANN     0
+244         62024 Diseased_margin OFAV/OANN     0
+245         82024 Diseased_margin OFAV/OANN     0
+246         92023 Diseased_margin OFAV/OANN     0
+247        112023 Diseased_margin OFAV/OANN     0
+248        122023 Diseased_margin OFAV/OANN     0
+249         12024 Diseased_Margin OFAV/OANN     0
+250         22024 Diseased_Margin OFAV/OANN     0
+251         42024 Diseased_Margin OFAV/OANN     0
+252         62024 Diseased_Margin OFAV/OANN     0
+253         82024 Diseased_Margin OFAV/OANN     0
+254         92023 Diseased_Margin OFAV/OANN     0
+255        112023 Diseased_Margin OFAV/OANN     0
+256        122023 Diseased_Margin OFAV/OANN     0
+257         12024 Diseased_tissue OFAV/OANN     0
+258         22024 Diseased_tissue OFAV/OANN     0
+259         42024 Diseased_tissue OFAV/OANN     0
+260         62024 Diseased_tissue OFAV/OANN     0
+261         82024 Diseased_tissue OFAV/OANN     0
+262         92023 Diseased_tissue OFAV/OANN     0
+263        112023 Diseased_tissue OFAV/OANN     0
+264        122023 Diseased_tissue OFAV/OANN     0
+265         12024 Diseased_Tissue OFAV/OANN     0
+266         22024 Diseased_Tissue OFAV/OANN     0
+267         42024 Diseased_Tissue OFAV/OANN     0
+268         62024 Diseased_Tissue OFAV/OANN     0
+269         82024 Diseased_Tissue OFAV/OANN     0
+270         92023 Diseased_Tissue OFAV/OANN     0
+271        112023 Diseased_Tissue OFAV/OANN     0
+272        122023 Diseased_Tissue OFAV/OANN     0
+273         12024         healthy OFAV/OANN     0
+274         22024         healthy OFAV/OANN     0
+275         42024         healthy OFAV/OANN     0
+276         62024         healthy OFAV/OANN     0
+277         82024         healthy OFAV/OANN     0
+278         92023         healthy OFAV/OANN     0
+279        112023         healthy OFAV/OANN     0
+280        122023         healthy OFAV/OANN     0
+281         12024         Healthy OFAV/OANN     0
+282         22024         Healthy OFAV/OANN     0
+283         42024         Healthy OFAV/OANN     0
+284         62024         Healthy OFAV/OANN     0
+285         82024         Healthy OFAV/OANN     0
+286         92023         Healthy OFAV/OANN     0
+287        112023         Healthy OFAV/OANN     1
+288        122023         Healthy OFAV/OANN     1
+289         12024 Diseased_margin      PAST     0
+290         22024 Diseased_margin      PAST     0
+291         42024 Diseased_margin      PAST     0
+292         62024 Diseased_margin      PAST     0
+293         82024 Diseased_margin      PAST     0
+294         92023 Diseased_margin      PAST     0
+295        112023 Diseased_margin      PAST     0
+296        122023 Diseased_margin      PAST     0
+297         12024 Diseased_Margin      PAST     0
+298         22024 Diseased_Margin      PAST     0
+299         42024 Diseased_Margin      PAST     0
+300         62024 Diseased_Margin      PAST     0
+301         82024 Diseased_Margin      PAST     0
+302         92023 Diseased_Margin      PAST     0
+303        112023 Diseased_Margin      PAST     0
+304        122023 Diseased_Margin      PAST     0
+305         12024 Diseased_tissue      PAST     0
+306         22024 Diseased_tissue      PAST     0
+307         42024 Diseased_tissue      PAST     0
+308         62024 Diseased_tissue      PAST     0
+309         82024 Diseased_tissue      PAST     0
+310         92023 Diseased_tissue      PAST     0
+311        112023 Diseased_tissue      PAST     0
+312        122023 Diseased_tissue      PAST     0
+313         12024 Diseased_Tissue      PAST     0
+314         22024 Diseased_Tissue      PAST     0
+315         42024 Diseased_Tissue      PAST     0
+316         62024 Diseased_Tissue      PAST     0
+317         82024 Diseased_Tissue      PAST     0
+318         92023 Diseased_Tissue      PAST     0
+319        112023 Diseased_Tissue      PAST     0
+320        122023 Diseased_Tissue      PAST     0
+321         12024         healthy      PAST     0
+322         22024         healthy      PAST     0
+323         42024         healthy      PAST     0
+324         62024         healthy      PAST     0
+325         82024         healthy      PAST     6
+326         92023         healthy      PAST     0
+327        112023         healthy      PAST     0
+328        122023         healthy      PAST     0
+329         12024         Healthy      PAST    11
+330         22024         Healthy      PAST     6
+331         42024         Healthy      PAST    19
+332         62024         Healthy      PAST     7
+333         82024         Healthy      PAST     0
+334         92023         Healthy      PAST    15
+335        112023         Healthy      PAST     8
+336        122023         Healthy      PAST     8
+337         12024 Diseased_margin      PSTR     0
+338         22024 Diseased_margin      PSTR     0
+339         42024 Diseased_margin      PSTR     2
+340         62024 Diseased_margin      PSTR     0
+341         82024 Diseased_margin      PSTR     0
+342         92023 Diseased_margin      PSTR     0
+343        112023 Diseased_margin      PSTR     0
+344        122023 Diseased_margin      PSTR     0
+345         12024 Diseased_Margin      PSTR     0
+346         22024 Diseased_Margin      PSTR     0
+347         42024 Diseased_Margin      PSTR     0
+348         62024 Diseased_Margin      PSTR     0
+349         82024 Diseased_Margin      PSTR     0
+350         92023 Diseased_Margin      PSTR     1
+351        112023 Diseased_Margin      PSTR     0
+352        122023 Diseased_Margin      PSTR     0
+353         12024 Diseased_tissue      PSTR     0
+354         22024 Diseased_tissue      PSTR     0
+355         42024 Diseased_tissue      PSTR     2
+356         62024 Diseased_tissue      PSTR     0
+357         82024 Diseased_tissue      PSTR     0
+358         92023 Diseased_tissue      PSTR     0
+359        112023 Diseased_tissue      PSTR     0
+360        122023 Diseased_tissue      PSTR     0
+361         12024 Diseased_Tissue      PSTR     0
+362         22024 Diseased_Tissue      PSTR     0
+363         42024 Diseased_Tissue      PSTR     0
+364         62024 Diseased_Tissue      PSTR     0
+365         82024 Diseased_Tissue      PSTR     0
+366         92023 Diseased_Tissue      PSTR     1
+367        112023 Diseased_Tissue      PSTR     0
+368        122023 Diseased_Tissue      PSTR     0
+369         12024         healthy      PSTR     0
+370         22024         healthy      PSTR     0
+371         42024         healthy      PSTR     0
+372         62024         healthy      PSTR     0
+373         82024         healthy      PSTR     5
+374         92023         healthy      PSTR     0
+375        112023         healthy      PSTR     0
+376        122023         healthy      PSTR     0
+377         12024         Healthy      PSTR    11
+378         22024         Healthy      PSTR     5
+379         42024         Healthy      PSTR    18
+380         62024         Healthy      PSTR     5
+381         82024         Healthy      PSTR     0
+382         92023         Healthy      PSTR     8
+383        112023         Healthy      PSTR     5
+384        122023         Healthy      PSTR     5
+385         12024 Diseased_margin      SSID     0
+386         22024 Diseased_margin      SSID     1
+387         42024 Diseased_margin      SSID    15
+388         62024 Diseased_margin      SSID     0
+389         82024 Diseased_margin      SSID     0
+390         92023 Diseased_margin      SSID     0
+391        112023 Diseased_margin      SSID     0
+392        122023 Diseased_margin      SSID     0
+393         12024 Diseased_Margin      SSID     0
+394         22024 Diseased_Margin      SSID     0
+395         42024 Diseased_Margin      SSID     1
+396         62024 Diseased_Margin      SSID     1
+397         82024 Diseased_Margin      SSID     0
+398         92023 Diseased_Margin      SSID    16
+399        112023 Diseased_Margin      SSID     0
+400        122023 Diseased_Margin      SSID     0
+401         12024 Diseased_tissue      SSID     0
+402         22024 Diseased_tissue      SSID     1
+403         42024 Diseased_tissue      SSID    10
+404         62024 Diseased_tissue      SSID     0
+405         82024 Diseased_tissue      SSID     0
+406         92023 Diseased_tissue      SSID     0
+407        112023 Diseased_tissue      SSID     0
+408        122023 Diseased_tissue      SSID     0
+409         12024 Diseased_Tissue      SSID     0
+410         22024 Diseased_Tissue      SSID     0
+411         42024 Diseased_Tissue      SSID     1
+412         62024 Diseased_Tissue      SSID     3
+413         82024 Diseased_Tissue      SSID     0
+414         92023 Diseased_Tissue      SSID     9
+415        112023 Diseased_Tissue      SSID     0
+416        122023 Diseased_Tissue      SSID     0
+417         12024         healthy      SSID     0
+418         22024         healthy      SSID     0
+419         42024         healthy      SSID     0
+420         62024         healthy      SSID     0
+421         82024         healthy      SSID     6
+422         92023         healthy      SSID     0
+423        112023         healthy      SSID     0
+424        122023         healthy      SSID     0
+425         12024         Healthy      SSID    12
+426         22024         Healthy      SSID     5
+427         42024         Healthy      SSID    15
+428         62024         Healthy      SSID     3
+429         82024         Healthy      SSID     0
+430         92023         Healthy      SSID     8
+431        112023         Healthy      SSID     6
+432        122023         Healthy      SSID     6
+> 
+> # Optionally, save this organized data frame to a new CSV file
+> write.csv(counts_df, "organized_counts.csv", row.names = FALSE)
+> 
+> # Load necessary libraries
+> library(dplyr)
+> library(reshape2)
+> 
+> # Read the data from CSV file
+> data <- read.csv("organized_counts.csv")
+> 
+> # Standardize the Health_Status values and handle whitespace
+> data <- data %>%
++   mutate(Health_Status = case_when(
++     tolower(trimws(Health_Status)) == "healthy" ~ "Healthy",  # Combine into "Healthy"
++     tolower(trimws(Health_Status)) == "diseased_margin" ~ "Diseased Margin",  # Combine into "Diseased Margin"
++     tolower(trimws(Health_Status)) == "diseased_tissue" ~ "Diseased Tissue",  # Combine into "Diseased Tissue"
++     tolower(trimws(Health_Status)) == "past" ~ "PAST",  # Combine into "PAST"
++     TRUE ~ Health_Status  # Keep other statuses unchanged
++   ))
+Error in `mutate()`:
+ℹ In argument: `Health_Status = case_when(...)`.
+Caused by error in `case_when()`:
+! Can't combine `..1 (right)` <character> and `..5 (right)` <integer>.
+Run `rlang::last_trace()` to see where the error occurred.
+> 
+> # Combine species into one name if needed
+> data <- data %>%
++   mutate(Species = case_when(
++     Species %in% c("OFAV", "OANN", "OFAV/OANN") ~ "ORBI",
++     TRUE ~ Species
++   ))
+> 
+> # Create a contingency table
+> contingency_table <- table(data$Health_Status, data$Month_Year, data$Species)
+> 
+> # Convert to a data frame
+> counts_df <- as.data.frame(contingency_table)
+> 
+> # Rename the columns for clarity
+> colnames(counts_df) <- c("Health_Status", "Month_Year", "Species", "Count")
+> 
+> # Reshape the data to create a matrix
+> matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
+> 
+> # View the matrix
+> print(matrix_counts)
+   Health_Status Species Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+1          12024    CNAT               1               1               1               1       1       1
+2          12024    DLAB               1               1               1               1       1       1
+3          12024    MCAV               1               1               1               1       1       1
+4          12024    ORBI               3               3               3               3       3       3
+5          12024    PAST               1               1               1               1       1       1
+6          12024    PSTR               1               1               1               1       1       1
+7          12024    SSID               1               1               1               1       1       1
+8          22024    CNAT               1               1               1               1       1       1
+9          22024    DLAB               1               1               1               1       1       1
+10         22024    MCAV               1               1               1               1       1       1
+11         22024    ORBI               3               3               3               3       3       3
+12         22024    PAST               1               1               1               1       1       1
+13         22024    PSTR               1               1               1               1       1       1
+14         22024    SSID               1               1               1               1       1       1
+15         42024    CNAT               1               1               1               1       1       1
+16         42024    DLAB               1               1               1               1       1       1
+17         42024    MCAV               1               1               1               1       1       1
+18         42024    ORBI               3               3               3               3       3       3
+19         42024    PAST               1               1               1               1       1       1
+20         42024    PSTR               1               1               1               1       1       1
+21         42024    SSID               1               1               1               1       1       1
+22         62024    CNAT               1               1               1               1       1       1
+23         62024    DLAB               1               1               1               1       1       1
+24         62024    MCAV               1               1               1               1       1       1
+25         62024    ORBI               3               3               3               3       3       3
+26         62024    PAST               1               1               1               1       1       1
+27         62024    PSTR               1               1               1               1       1       1
+28         62024    SSID               1               1               1               1       1       1
+29         82024    CNAT               1               1               1               1       1       1
+30         82024    DLAB               1               1               1               1       1       1
+31         82024    MCAV               1               1               1               1       1       1
+32         82024    ORBI               3               3               3               3       3       3
+33         82024    PAST               1               1               1               1       1       1
+34         82024    PSTR               1               1               1               1       1       1
+35         82024    SSID               1               1               1               1       1       1
+36         92023    CNAT               1               1               1               1       1       1
+37         92023    DLAB               1               1               1               1       1       1
+38         92023    MCAV               1               1               1               1       1       1
+39         92023    ORBI               3               3               3               3       3       3
+40         92023    PAST               1               1               1               1       1       1
+41         92023    PSTR               1               1               1               1       1       1
+42         92023    SSID               1               1               1               1       1       1
+43        112023    CNAT               1               1               1               1       1       1
+44        112023    DLAB               1               1               1               1       1       1
+45        112023    MCAV               1               1               1               1       1       1
+46        112023    ORBI               3               3               3               3       3       3
+47        112023    PAST               1               1               1               1       1       1
+48        112023    PSTR               1               1               1               1       1       1
+49        112023    SSID               1               1               1               1       1       1
+50        122023    CNAT               1               1               1               1       1       1
+51        122023    DLAB               1               1               1               1       1       1
+52        122023    MCAV               1               1               1               1       1       1
+53        122023    ORBI               3               3               3               3       3       3
+54        122023    PAST               1               1               1               1       1       1
+55        122023    PSTR               1               1               1               1       1       1
+56        122023    SSID               1               1               1               1       1       1
+> # Standardize the Health_Status values and handle whitespace
+> data <- data %>%
++   mutate(Health_Status = case_when(
++     tolower(trimws(Health_Status)) == "healthy" ~ "Healthy",  # Combine into "Healthy"
++     tolower(trimws(Health_Status)) == "diseased_margin" ~ "Diseased Margin",  # Combine into "Diseased Margin"
++     tolower(trimws(Health_Status)) == "diseased_tissue" ~ "Diseased Tissue",  # Combine into "Diseased Tissue"
++     TRUE ~ Health_Status  # Keep other statuses unchanged
++   ))
+Error in `mutate()`:
+ℹ In argument: `Health_Status = case_when(...)`.
+Caused by error in `case_when()`:
+! Can't combine `..1 (right)` <character> and `..4 (right)` <integer>.
+Run `rlang::last_trace()` to see where the error occurred.
+> # Create a contingency table
+> contingency_table <- table(data$Health_Status, data$Month_Year, data$Species)
+> 
+> # Convert to a data frame
+> counts_df <- as.data.frame(contingency_table)
+> 
+> # Rename the columns to the correct names
+> colnames(counts_df) <- c("Health_Status", "Month_Year", "Species", "Count")
+> 
+> # Reshape the data to create a matrix
+> matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
+> 
+> # View the matrix with correct labels
+> print(matrix_counts)
+   Health_Status Species Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+1          12024    CNAT               1               1               1               1       1       1
+2          12024    DLAB               1               1               1               1       1       1
+3          12024    MCAV               1               1               1               1       1       1
+4          12024    ORBI               3               3               3               3       3       3
+5          12024    PAST               1               1               1               1       1       1
+6          12024    PSTR               1               1               1               1       1       1
+7          12024    SSID               1               1               1               1       1       1
+8          22024    CNAT               1               1               1               1       1       1
+9          22024    DLAB               1               1               1               1       1       1
+10         22024    MCAV               1               1               1               1       1       1
+11         22024    ORBI               3               3               3               3       3       3
+12         22024    PAST               1               1               1               1       1       1
+13         22024    PSTR               1               1               1               1       1       1
+14         22024    SSID               1               1               1               1       1       1
+15         42024    CNAT               1               1               1               1       1       1
+16         42024    DLAB               1               1               1               1       1       1
+17         42024    MCAV               1               1               1               1       1       1
+18         42024    ORBI               3               3               3               3       3       3
+19         42024    PAST               1               1               1               1       1       1
+20         42024    PSTR               1               1               1               1       1       1
+21         42024    SSID               1               1               1               1       1       1
+22         62024    CNAT               1               1               1               1       1       1
+23         62024    DLAB               1               1               1               1       1       1
+24         62024    MCAV               1               1               1               1       1       1
+25         62024    ORBI               3               3               3               3       3       3
+26         62024    PAST               1               1               1               1       1       1
+27         62024    PSTR               1               1               1               1       1       1
+28         62024    SSID               1               1               1               1       1       1
+29         82024    CNAT               1               1               1               1       1       1
+30         82024    DLAB               1               1               1               1       1       1
+31         82024    MCAV               1               1               1               1       1       1
+32         82024    ORBI               3               3               3               3       3       3
+33         82024    PAST               1               1               1               1       1       1
+34         82024    PSTR               1               1               1               1       1       1
+35         82024    SSID               1               1               1               1       1       1
+36         92023    CNAT               1               1               1               1       1       1
+37         92023    DLAB               1               1               1               1       1       1
+38         92023    MCAV               1               1               1               1       1       1
+39         92023    ORBI               3               3               3               3       3       3
+40         92023    PAST               1               1               1               1       1       1
+41         92023    PSTR               1               1               1               1       1       1
+42         92023    SSID               1               1               1               1       1       1
+43        112023    CNAT               1               1               1               1       1       1
+44        112023    DLAB               1               1               1               1       1       1
+45        112023    MCAV               1               1               1               1       1       1
+46        112023    ORBI               3               3               3               3       3       3
+47        112023    PAST               1               1               1               1       1       1
+48        112023    PSTR               1               1               1               1       1       1
+49        112023    SSID               1               1               1               1       1       1
+50        122023    CNAT               1               1               1               1       1       1
+51        122023    DLAB               1               1               1               1       1       1
+52        122023    MCAV               1               1               1               1       1       1
+53        122023    ORBI               3               3               3               3       3       3
+54        122023    PAST               1               1               1               1       1       1
+55        122023    PSTR               1               1               1               1       1       1
+56        122023    SSID               1               1               1               1       1       1
+> 
+> # Fix column names manually if needed
+> colnames(matrix_counts)[1:2] <- c("Health_Status", "Species")
+> 
+> # View the corrected matrix
+> print(matrix_counts)
+   Health_Status Species Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
+1          12024    CNAT               1               1               1               1       1       1
+2          12024    DLAB               1               1               1               1       1       1
+3          12024    MCAV               1               1               1               1       1       1
+4          12024    ORBI               3               3               3               3       3       3
+5          12024    PAST               1               1               1               1       1       1
+6          12024    PSTR               1               1               1               1       1       1
+7          12024    SSID               1               1               1               1       1       1
+8          22024    CNAT               1               1               1               1       1       1
+9          22024    DLAB               1               1               1               1       1       1
+10         22024    MCAV               1               1               1               1       1       1
+11         22024    ORBI               3               3               3               3       3       3
+12         22024    PAST               1               1               1               1       1       1
+13         22024    PSTR               1               1               1               1       1       1
+14         22024    SSID               1               1               1               1       1       1
+15         42024    CNAT               1               1               1               1       1       1
+16         42024    DLAB               1               1               1               1       1       1
+17         42024    MCAV               1               1               1               1       1       1
+18         42024    ORBI               3               3               3               3       3       3
+19         42024    PAST               1               1               1               1       1       1
+20         42024    PSTR               1               1               1               1       1       1
+21         42024    SSID               1               1               1               1       1       1
+22         62024    CNAT               1               1               1               1       1       1
+23         62024    DLAB               1               1               1               1       1       1
+24         62024    MCAV               1               1               1               1       1       1
+25         62024    ORBI               3               3               3               3       3       3
+26         62024    PAST               1               1               1               1       1       1
+27         62024    PSTR               1               1               1               1       1       1
+28         62024    SSID               1               1               1               1       1       1
+29         82024    CNAT               1               1               1               1       1       1
+30         82024    DLAB               1               1               1               1       1       1
+31         82024    MCAV               1               1               1               1       1       1
+32         82024    ORBI               3               3               3               3       3       3
+33         82024    PAST               1               1               1               1       1       1
+34         82024    PSTR               1               1               1               1       1       1
+35         82024    SSID               1               1               1               1       1       1
+36         92023    CNAT               1               1               1               1       1       1
+37         92023    DLAB               1               1               1               1       1       1
+38         92023    MCAV               1               1               1               1       1       1
+39         92023    ORBI               3               3               3               3       3       3
+40         92023    PAST               1               1               1               1       1       1
+41         92023    PSTR               1               1               1               1       1       1
+42         92023    SSID               1               1               1               1       1       1
+43        112023    CNAT               1               1               1               1       1       1
+44        112023    DLAB               1               1               1               1       1       1
+45        112023    MCAV               1               1               1               1       1       1
+46        112023    ORBI               3               3               3               3       3       3
+47        112023    PAST               1               1               1               1       1       1
+48        112023    PSTR               1               1               1               1       1       1
+49        112023    SSID               1               1               1               1       1       1
+50        122023    CNAT               1               1               1               1       1       1
+51        122023    DLAB               1               1               1               1       1       1
+52        122023    MCAV               1               1               1               1       1       1
+53        122023    ORBI               3               3               3               3       3       3
+54        122023    PAST               1               1               1               1       1       1
+55        122023    PSTR               1               1               1               1       1       1
+56        122023    SSID               1               1               1               1       1       1
+> 
+> # Load necessary library
+> library(dplyr)
+> 
+> # Read the data from CSV file
+> data <- read.csv("copy_CBC_samples.csv")
+> 
+> # Create a contingency table
+> contingency_table <- table(data$Month_Year, data$Health_Status, data$Species)
+> 
+> # Convert the contingency table to a data frame
+> counts_df <- as.data.frame(contingency_table)
+> 
+> # Rename the columns for clarity
+> colnames(counts_df) <- c("Month_Year", "Health_Status", "Species", "Count")
+> 
+> # View the organized data frame
+> print(counts_df)
+    Month_Year   Health_Status   Species Count
+1        12024 Diseased_margin      CNAT     0
+2        22024 Diseased_margin      CNAT     0
+3        42024 Diseased_margin      CNAT     0
+4        62024 Diseased_margin      CNAT     0
+5        82024 Diseased_margin      CNAT     0
+6        92023 Diseased_margin      CNAT     0
+7       112023 Diseased_margin      CNAT     0
+8       122023 Diseased_margin      CNAT     0
+9        12024 Diseased_Margin      CNAT     0
+10       22024 Diseased_Margin      CNAT     0
+11       42024 Diseased_Margin      CNAT     0
+12       62024 Diseased_Margin      CNAT     0
+13       82024 Diseased_Margin      CNAT     0
+14       92023 Diseased_Margin      CNAT     0
+15      112023 Diseased_Margin      CNAT     0
+16      122023 Diseased_Margin      CNAT     0
+17       12024 Diseased_tissue      CNAT     0
+18       22024 Diseased_tissue      CNAT     0
+19       42024 Diseased_tissue      CNAT     0
+20       62024 Diseased_tissue      CNAT     0
+21       82024 Diseased_tissue      CNAT     0
+22       92023 Diseased_tissue      CNAT     0
+23      112023 Diseased_tissue      CNAT     0
+24      122023 Diseased_tissue      CNAT     0
+25       12024 Diseased_Tissue      CNAT     0
+26       22024 Diseased_Tissue      CNAT     0
+27       42024 Diseased_Tissue      CNAT     0
+28       62024 Diseased_Tissue      CNAT     0
+29       82024 Diseased_Tissue      CNAT     0
+30       92023 Diseased_Tissue      CNAT     0
+31      112023 Diseased_Tissue      CNAT     0
+32      122023 Diseased_Tissue      CNAT     0
+33       12024         healthy      CNAT     0
+34       22024         healthy      CNAT     0
+35       42024         healthy      CNAT     0
+36       62024         healthy      CNAT     0
+37       82024         healthy      CNAT     0
+38       92023         healthy      CNAT     0
+39      112023         healthy      CNAT     0
+40      122023         healthy      CNAT     0
+41       12024         Healthy      CNAT     0
+42       22024         Healthy      CNAT     0
+43       42024         Healthy      CNAT     0
+44       62024         Healthy      CNAT     0
+45       82024         Healthy      CNAT     0
+46       92023         Healthy      CNAT     1
+47      112023         Healthy      CNAT     0
+48      122023         Healthy      CNAT     0
+49       12024 Diseased_margin      DLAB     0
+50       22024 Diseased_margin      DLAB     0
+51       42024 Diseased_margin      DLAB     0
+52       62024 Diseased_margin      DLAB     0
+53       82024 Diseased_margin      DLAB     0
+54       92023 Diseased_margin      DLAB     0
+55      112023 Diseased_margin      DLAB     0
+56      122023 Diseased_margin      DLAB     0
+57       12024 Diseased_Margin      DLAB     0
+58       22024 Diseased_Margin      DLAB     0
+59       42024 Diseased_Margin      DLAB     0
+60       62024 Diseased_Margin      DLAB     0
+61       82024 Diseased_Margin      DLAB     0
+62       92023 Diseased_Margin      DLAB     1
+63      112023 Diseased_Margin      DLAB     0
+64      122023 Diseased_Margin      DLAB     0
+65       12024 Diseased_tissue      DLAB     0
+66       22024 Diseased_tissue      DLAB     0
+67       42024 Diseased_tissue      DLAB     0
+68       62024 Diseased_tissue      DLAB     0
+69       82024 Diseased_tissue      DLAB     0
+70       92023 Diseased_tissue      DLAB     0
+71      112023 Diseased_tissue      DLAB     0
+72      122023 Diseased_tissue      DLAB     0
+73       12024 Diseased_Tissue      DLAB     0
+74       22024 Diseased_Tissue      DLAB     0
+75       42024 Diseased_Tissue      DLAB     0
+76       62024 Diseased_Tissue      DLAB     0
+77       82024 Diseased_Tissue      DLAB     0
+78       92023 Diseased_Tissue      DLAB     1
+79      112023 Diseased_Tissue      DLAB     0
+80      122023 Diseased_Tissue      DLAB     0
+81       12024         healthy      DLAB     0
+82       22024         healthy      DLAB     0
+83       42024         healthy      DLAB     0
+84       62024         healthy      DLAB     0
+85       82024         healthy      DLAB     0
+86       92023         healthy      DLAB     0
+87      112023         healthy      DLAB     0
+88      122023         healthy      DLAB     0
+89       12024         Healthy      DLAB     0
+90       22024         Healthy      DLAB     0
+91       42024         Healthy      DLAB     8
+92       62024         Healthy      DLAB     0
+93       82024         Healthy      DLAB     0
+94       92023         Healthy      DLAB     7
+95      112023         Healthy      DLAB     0
+96      122023         Healthy      DLAB     0
+97       12024 Diseased_margin      MCAV     0
+98       22024 Diseased_margin      MCAV     1
+99       42024 Diseased_margin      MCAV     0
+100      62024 Diseased_margin      MCAV     0
+101      82024 Diseased_margin      MCAV     0
+102      92023 Diseased_margin      MCAV     0
+103     112023 Diseased_margin      MCAV     0
+104     122023 Diseased_margin      MCAV     0
+105      12024 Diseased_Margin      MCAV     0
+106      22024 Diseased_Margin      MCAV     0
+107      42024 Diseased_Margin      MCAV     0
+108      62024 Diseased_Margin      MCAV     1
+109      82024 Diseased_Margin      MCAV     0
+110      92023 Diseased_Margin      MCAV     0
+111     112023 Diseased_Margin      MCAV     0
+112     122023 Diseased_Margin      MCAV     0
+113      12024 Diseased_tissue      MCAV     0
+114      22024 Diseased_tissue      MCAV     1
+115      42024 Diseased_tissue      MCAV     0
+116      62024 Diseased_tissue      MCAV     0
+117      82024 Diseased_tissue      MCAV     0
+118      92023 Diseased_tissue      MCAV     0
+119     112023 Diseased_tissue      MCAV     0
+120     122023 Diseased_tissue      MCAV     0
+121      12024 Diseased_Tissue      MCAV     0
+122      22024 Diseased_Tissue      MCAV     0
+123      42024 Diseased_Tissue      MCAV     0
+124      62024 Diseased_Tissue      MCAV     1
+125      82024 Diseased_Tissue      MCAV     0
+126      92023 Diseased_Tissue      MCAV     0
+127     112023 Diseased_Tissue      MCAV     0
+128     122023 Diseased_Tissue      MCAV     0
+129      12024         healthy      MCAV     0
+130      22024         healthy      MCAV     0
+131      42024         healthy      MCAV     0
+132      62024         healthy      MCAV     0
+133      82024         healthy      MCAV    10
+134      92023         healthy      MCAV     0
+135     112023         healthy      MCAV     0
+136     122023         healthy      MCAV     0
+137      12024         Healthy      MCAV    15
+138      22024         Healthy      MCAV     9
+139      42024         Healthy      MCAV    25
+140      62024         Healthy      MCAV     9
+141      82024         Healthy      MCAV     0
+142      92023         Healthy      MCAV    14
+143     112023         Healthy      MCAV    10
+144     122023         Healthy      MCAV    10
+145      12024 Diseased_margin      OANN     0
+146      22024 Diseased_margin      OANN     0
+147      42024 Diseased_margin      OANN     0
+148      62024 Diseased_margin      OANN     0
+149      82024 Diseased_margin      OANN     0
+150      92023 Diseased_margin      OANN     0
+151     112023 Diseased_margin      OANN     0
+152     122023 Diseased_margin      OANN     0
+153      12024 Diseased_Margin      OANN     0
+154      22024 Diseased_Margin      OANN     0
+155      42024 Diseased_Margin      OANN     0
+156      62024 Diseased_Margin      OANN     0
+157      82024 Diseased_Margin      OANN     0
+158      92023 Diseased_Margin      OANN     4
+159     112023 Diseased_Margin      OANN     0
+160     122023 Diseased_Margin      OANN     0
+161      12024 Diseased_tissue      OANN     0
+162      22024 Diseased_tissue      OANN     0
+163      42024 Diseased_tissue      OANN     0
+164      62024 Diseased_tissue      OANN     0
+165      82024 Diseased_tissue      OANN     0
+166      92023 Diseased_tissue      OANN     0
+167     112023 Diseased_tissue      OANN     0
+168     122023 Diseased_tissue      OANN     0
+169      12024 Diseased_Tissue      OANN     0
+170      22024 Diseased_Tissue      OANN     0
+171      42024 Diseased_Tissue      OANN     2
+172      62024 Diseased_Tissue      OANN     0
+173      82024 Diseased_Tissue      OANN     0
+174      92023 Diseased_Tissue      OANN     4
+175     112023 Diseased_Tissue      OANN     0
+176     122023 Diseased_Tissue      OANN     0
+177      12024         healthy      OANN     0
+178      22024         healthy      OANN     0
+179      42024         healthy      OANN     0
+180      62024         healthy      OANN     0
+181      82024         healthy      OANN     2
+182      92023         healthy      OANN     0
+183     112023         healthy      OANN     0
+184     122023         healthy      OANN     0
+185      12024         Healthy      OANN     8
+186      22024         Healthy      OANN     1
+187      42024         Healthy      OANN    17
+188      62024         Healthy      OANN     1
+189      82024         Healthy      OANN     0
+190      92023         Healthy      OANN     4
+191     112023         Healthy      OANN     0
+192     122023         Healthy      OANN     0
+193      12024 Diseased_margin      OFAV     0
+194      22024 Diseased_margin      OFAV     0
+195      42024 Diseased_margin      OFAV     0
+196      62024 Diseased_margin      OFAV     0
+197      82024 Diseased_margin      OFAV     0
+198      92023 Diseased_margin      OFAV     0
+199     112023 Diseased_margin      OFAV     0
+200     122023 Diseased_margin      OFAV     0
+201      12024 Diseased_Margin      OFAV     0
+202      22024 Diseased_Margin      OFAV     0
+203      42024 Diseased_Margin      OFAV     0
+204      62024 Diseased_Margin      OFAV     0
+205      82024 Diseased_Margin      OFAV     0
+206      92023 Diseased_Margin      OFAV     4
+207     112023 Diseased_Margin      OFAV     0
+208     122023 Diseased_Margin      OFAV     0
+209      12024 Diseased_tissue      OFAV     0
+210      22024 Diseased_tissue      OFAV     0
+211      42024 Diseased_tissue      OFAV     0
+212      62024 Diseased_tissue      OFAV     0
+213      82024 Diseased_tissue      OFAV     0
+214      92023 Diseased_tissue      OFAV     0
+215     112023 Diseased_tissue      OFAV     0
+216     122023 Diseased_tissue      OFAV     0
+217      12024 Diseased_Tissue      OFAV     0
+218      22024 Diseased_Tissue      OFAV     0
+219      42024 Diseased_Tissue      OFAV     0
+220      62024 Diseased_Tissue      OFAV     0
+221      82024 Diseased_Tissue      OFAV     0
+222      92023 Diseased_Tissue      OFAV     4
+223     112023 Diseased_Tissue      OFAV     0
+224     122023 Diseased_Tissue      OFAV     0
+225      12024         healthy      OFAV     0
+226      22024         healthy      OFAV     0
+227      42024         healthy      OFAV     0
+228      62024         healthy      OFAV     0
+229      82024         healthy      OFAV     5
+230      92023         healthy      OFAV     0
+231     112023         healthy      OFAV     0
+232     122023         healthy      OFAV     0
+233      12024         Healthy      OFAV    12
+234      22024         Healthy      OFAV     6
+235      42024         Healthy      OFAV    24
+236      62024         Healthy      OFAV     6
+237      82024         Healthy      OFAV     0
+238      92023         Healthy      OFAV     7
+239     112023         Healthy      OFAV     6
+240     122023         Healthy      OFAV     6
+241      12024 Diseased_margin OFAV/OANN     0
+242      22024 Diseased_margin OFAV/OANN     0
+243      42024 Diseased_margin OFAV/OANN     0
+244      62024 Diseased_margin OFAV/OANN     0
+245      82024 Diseased_margin OFAV/OANN     0
+246      92023 Diseased_margin OFAV/OANN     0
+247     112023 Diseased_margin OFAV/OANN     0
+248     122023 Diseased_margin OFAV/OANN     0
+249      12024 Diseased_Margin OFAV/OANN     0
+250      22024 Diseased_Margin OFAV/OANN     0
+251      42024 Diseased_Margin OFAV/OANN     0
+252      62024 Diseased_Margin OFAV/OANN     0
+253      82024 Diseased_Margin OFAV/OANN     0
+254      92023 Diseased_Margin OFAV/OANN     0
+255     112023 Diseased_Margin OFAV/OANN     0
+256     122023 Diseased_Margin OFAV/OANN     0
+257      12024 Diseased_tissue OFAV/OANN     0
+258      22024 Diseased_tissue OFAV/OANN     0
+259      42024 Diseased_tissue OFAV/OANN     0
+260      62024 Diseased_tissue OFAV/OANN     0
+261      82024 Diseased_tissue OFAV/OANN     0
+262      92023 Diseased_tissue OFAV/OANN     0
+263     112023 Diseased_tissue OFAV/OANN     0
+264     122023 Diseased_tissue OFAV/OANN     0
+265      12024 Diseased_Tissue OFAV/OANN     0
+266      22024 Diseased_Tissue OFAV/OANN     0
+267      42024 Diseased_Tissue OFAV/OANN     0
+268      62024 Diseased_Tissue OFAV/OANN     0
+269      82024 Diseased_Tissue OFAV/OANN     0
+270      92023 Diseased_Tissue OFAV/OANN     0
+271     112023 Diseased_Tissue OFAV/OANN     0
+272     122023 Diseased_Tissue OFAV/OANN     0
+273      12024         healthy OFAV/OANN     0
+274      22024         healthy OFAV/OANN     0
+275      42024         healthy OFAV/OANN     0
+276      62024         healthy OFAV/OANN     0
+277      82024         healthy OFAV/OANN     0
+278      92023         healthy OFAV/OANN     0
+279     112023         healthy OFAV/OANN     0
+280     122023         healthy OFAV/OANN     0
+281      12024         Healthy OFAV/OANN     0
+282      22024         Healthy OFAV/OANN     0
+283      42024         Healthy OFAV/OANN     0
+284      62024         Healthy OFAV/OANN     0
+285      82024         Healthy OFAV/OANN     0
+286      92023         Healthy OFAV/OANN     0
+287     112023         Healthy OFAV/OANN     1
+288     122023         Healthy OFAV/OANN     1
+289      12024 Diseased_margin      PAST     0
+290      22024 Diseased_margin      PAST     0
+291      42024 Diseased_margin      PAST     0
+292      62024 Diseased_margin      PAST     0
+293      82024 Diseased_margin      PAST     0
+294      92023 Diseased_margin      PAST     0
+295     112023 Diseased_margin      PAST     0
+296     122023 Diseased_margin      PAST     0
+297      12024 Diseased_Margin      PAST     0
+298      22024 Diseased_Margin      PAST     0
+299      42024 Diseased_Margin      PAST     0
+300      62024 Diseased_Margin      PAST     0
+301      82024 Diseased_Margin      PAST     0
+302      92023 Diseased_Margin      PAST     0
+303     112023 Diseased_Margin      PAST     0
+304     122023 Diseased_Margin      PAST     0
+305      12024 Diseased_tissue      PAST     0
+306      22024 Diseased_tissue      PAST     0
+307      42024 Diseased_tissue      PAST     0
+308      62024 Diseased_tissue      PAST     0
+309      82024 Diseased_tissue      PAST     0
+310      92023 Diseased_tissue      PAST     0
+311     112023 Diseased_tissue      PAST     0
+312     122023 Diseased_tissue      PAST     0
+313      12024 Diseased_Tissue      PAST     0
+314      22024 Diseased_Tissue      PAST     0
+315      42024 Diseased_Tissue      PAST     0
+316      62024 Diseased_Tissue      PAST     0
+317      82024 Diseased_Tissue      PAST     0
+318      92023 Diseased_Tissue      PAST     0
+319     112023 Diseased_Tissue      PAST     0
+320     122023 Diseased_Tissue      PAST     0
+321      12024         healthy      PAST     0
+322      22024         healthy      PAST     0
+323      42024         healthy      PAST     0
+324      62024         healthy      PAST     0
+325      82024         healthy      PAST     6
+326      92023         healthy      PAST     0
+327     112023         healthy      PAST     0
+328     122023         healthy      PAST     0
+329      12024         Healthy      PAST    11
+330      22024         Healthy      PAST     6
+331      42024         Healthy      PAST    19
+332      62024         Healthy      PAST     7
+333      82024         Healthy      PAST     0
+334      92023         Healthy      PAST    15
+335     112023         Healthy      PAST     8
+336     122023         Healthy      PAST     8
+337      12024 Diseased_margin      PSTR     0
+338      22024 Diseased_margin      PSTR     0
+339      42024 Diseased_margin      PSTR     2
+340      62024 Diseased_margin      PSTR     0
+341      82024 Diseased_margin      PSTR     0
+342      92023 Diseased_margin      PSTR     0
+343     112023 Diseased_margin      PSTR     0
+344     122023 Diseased_margin      PSTR     0
+345      12024 Diseased_Margin      PSTR     0
+346      22024 Diseased_Margin      PSTR     0
+347      42024 Diseased_Margin      PSTR     0
+348      62024 Diseased_Margin      PSTR     0
+349      82024 Diseased_Margin      PSTR     0
+350      92023 Diseased_Margin      PSTR     1
+351     112023 Diseased_Margin      PSTR     0
+352     122023 Diseased_Margin      PSTR     0
+353      12024 Diseased_tissue      PSTR     0
+354      22024 Diseased_tissue      PSTR     0
+355      42024 Diseased_tissue      PSTR     2
+356      62024 Diseased_tissue      PSTR     0
+357      82024 Diseased_tissue      PSTR     0
+358      92023 Diseased_tissue      PSTR     0
+359     112023 Diseased_tissue      PSTR     0
+360     122023 Diseased_tissue      PSTR     0
+361      12024 Diseased_Tissue      PSTR     0
+362      22024 Diseased_Tissue      PSTR     0
+363      42024 Diseased_Tissue      PSTR     0
+364      62024 Diseased_Tissue      PSTR     0
+365      82024 Diseased_Tissue      PSTR     0
+366      92023 Diseased_Tissue      PSTR     1
+367     112023 Diseased_Tissue      PSTR     0
+368     122023 Diseased_Tissue      PSTR     0
+369      12024         healthy      PSTR     0
+370      22024         healthy      PSTR     0
+371      42024         healthy      PSTR     0
+372      62024         healthy      PSTR     0
+373      82024         healthy      PSTR     5
+374      92023         healthy      PSTR     0
+375     112023         healthy      PSTR     0
+376     122023         healthy      PSTR     0
+377      12024         Healthy      PSTR    11
+378      22024         Healthy      PSTR     5
+379      42024         Healthy      PSTR    18
+380      62024         Healthy      PSTR     5
+381      82024         Healthy      PSTR     0
+382      92023         Healthy      PSTR     8
+383     112023         Healthy      PSTR     5
+384     122023         Healthy      PSTR     5
+385      12024 Diseased_margin      SSID     0
+386      22024 Diseased_margin      SSID     1
+387      42024 Diseased_margin      SSID    15
+388      62024 Diseased_margin      SSID     0
+389      82024 Diseased_margin      SSID     0
+390      92023 Diseased_margin      SSID     0
+391     112023 Diseased_margin      SSID     0
+392     122023 Diseased_margin      SSID     0
+393      12024 Diseased_Margin      SSID     0
+394      22024 Diseased_Margin      SSID     0
+395      42024 Diseased_Margin      SSID     1
+396      62024 Diseased_Margin      SSID     1
+397      82024 Diseased_Margin      SSID     0
+398      92023 Diseased_Margin      SSID    16
+399     112023 Diseased_Margin      SSID     0
+400     122023 Diseased_Margin      SSID     0
+401      12024 Diseased_tissue      SSID     0
+402      22024 Diseased_tissue      SSID     1
+403      42024 Diseased_tissue      SSID    10
+404      62024 Diseased_tissue      SSID     0
+405      82024 Diseased_tissue      SSID     0
+406      92023 Diseased_tissue      SSID     0
+407     112023 Diseased_tissue      SSID     0
+408     122023 Diseased_tissue      SSID     0
+409      12024 Diseased_Tissue      SSID     0
+410      22024 Diseased_Tissue      SSID     0
+411      42024 Diseased_Tissue      SSID     1
+412      62024 Diseased_Tissue      SSID     3
+413      82024 Diseased_Tissue      SSID     0
+414      92023 Diseased_Tissue      SSID     9
+415     112023 Diseased_Tissue      SSID     0
+416     122023 Diseased_Tissue      SSID     0
+417      12024         healthy      SSID     0
+418      22024         healthy      SSID     0
+419      42024         healthy      SSID     0
+420      62024         healthy      SSID     0
+421      82024         healthy      SSID     6
+422      92023         healthy      SSID     0
+423     112023         healthy      SSID     0
+424     122023         healthy      SSID     0
+425      12024         Healthy      SSID    12
+426      22024         Healthy      SSID     5
+427      42024         Healthy      SSID    15
+428      62024         Healthy      SSID     3
+429      82024         Healthy      SSID     0
+430      92023         Healthy      SSID     8
+431     112023         Healthy      SSID     6
+432     122023         Healthy      SSID     6
+> 
+> # Optionally, save this organized data frame to a new CSV file
+> write.csv(counts_df, "organized_counts.csv", row.names = FALSE)
+> 
+> # Load necessary libraries
+> library(dplyr)
+> library(reshape2)
+> 
+> # Read the data from CSV file
+> data <- read.csv("organized_counts.csv")
+> 
+> # Standardize the Health_Status values and handle whitespace
+> data <- data %>%
++   mutate(Health_Status = case_when(
++     tolower(trimws(Health_Status)) == "healthy" ~ "Healthy",  # Combine into "Healthy"
++     tolower(trimws(Health_Status)) == "diseased_margin" ~ "Diseased Margin",  # Combine into "Diseased Margin"
++     tolower(trimws(Health_Status)) == "diseased_tissue" ~ "Diseased Tissue",  # Combine into "Diseased Tissue"
++     tolower(trimws(Health_Status)) == "past" ~ "PAST",  # Combine into "PAST"
++     TRUE ~ Health_Status  # Keep other statuses unchanged
++   ))
+> 
+> # Combine species into one name if needed
+> data <- data %>%
++   mutate(Species = case_when(
++     Species %in% c("OFAV", "OANN", "OFAV/OANN") ~ "ORBI",
++     TRUE ~ Species
++   ))
+> 
+> # Create a contingency table
+> contingency_table <- table(data$Health_Status, data$Month_Year, data$Species)
+> 
+> # Convert to a data frame
+> counts_df <- as.data.frame(contingency_table)
+> 
+> # Rename the columns for clarity
+> colnames(counts_df) <- c("Health_Status", "Month_Year", "Species", "Count")
+> 
+> # Reshape the data to create a matrix
+> matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
+> 
+> # View the matrix
+> print(matrix_counts)
+     Health_Status Species 12024 22024 42024 62024 82024 92023 112023 122023
+1  Diseased Margin    CNAT     2     2     2     2     2     2      2      2
+2  Diseased Margin    DLAB     2     2     2     2     2     2      2      2
+3  Diseased Margin    MCAV     2     2     2     2     2     2      2      2
+4  Diseased Margin    ORBI     6     6     6     6     6     6      6      6
+5  Diseased Margin    PAST     2     2     2     2     2     2      2      2
+6  Diseased Margin    PSTR     2     2     2     2     2     2      2      2
+7  Diseased Margin    SSID     2     2     2     2     2     2      2      2
+8  Diseased Tissue    CNAT     2     2     2     2     2     2      2      2
+9  Diseased Tissue    DLAB     2     2     2     2     2     2      2      2
+10 Diseased Tissue    MCAV     2     2     2     2     2     2      2      2
+11 Diseased Tissue    ORBI     6     6     6     6     6     6      6      6
+12 Diseased Tissue    PAST     2     2     2     2     2     2      2      2
+13 Diseased Tissue    PSTR     2     2     2     2     2     2      2      2
+14 Diseased Tissue    SSID     2     2     2     2     2     2      2      2
+15         Healthy    CNAT     2     2     2     2     2     2      2      2
+16         Healthy    DLAB     2     2     2     2     2     2      2      2
+17         Healthy    MCAV     2     2     2     2     2     2      2      2
+18         Healthy    ORBI     6     6     6     6     6     6      6      6
+19         Healthy    PAST     2     2     2     2     2     2      2      2
+20         Healthy    PSTR     2     2     2     2     2     2      2      2
+21         Healthy    SSID     2     2     2     2     2     2      2      2
+> 
+> # Create a contingency table and check its structure
+> contingency_table <- table(data$Health_Status, data$Month_Year, data$Species)
+> 
+> # Check the structure of the contingency table
+> print(contingency_table)
+, ,  = CNAT
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = DLAB
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = MCAV
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = ORBI
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     6     6     6     6     6     6      6      6
+  Diseased Tissue     6     6     6     6     6     6      6      6
+  Healthy             6     6     6     6     6     6      6      6
+
+, ,  = PAST
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = PSTR
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = SSID
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+> 
+> # Convert the contingency table to a data frame and check the result
+> counts_df <- as.data.frame(contingency_table)
+> colnames(counts_df) <- c("Health_Status", "Month_Year", "Species", "Count")
+> print(head(counts_df))  # Check the first few rows
+    Health_Status Month_Year Species Count
+1 Diseased Margin      12024    CNAT     2
+2 Diseased Tissue      12024    CNAT     2
+3         Healthy      12024    CNAT     2
+4 Diseased Margin      22024    CNAT     2
+5 Diseased Tissue      22024    CNAT     2
+6         Healthy      22024    CNAT     2
+> 
+> # Ensure the reshaping groups properly by Health_Status and Species
+> matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
+> 
+> # Check the resulting matrix
+> print(matrix_counts)
+     Health_Status Species 12024 22024 42024 62024 82024 92023 112023 122023
+1  Diseased Margin    CNAT     2     2     2     2     2     2      2      2
+2  Diseased Margin    DLAB     2     2     2     2     2     2      2      2
+3  Diseased Margin    MCAV     2     2     2     2     2     2      2      2
+4  Diseased Margin    ORBI     6     6     6     6     6     6      6      6
+5  Diseased Margin    PAST     2     2     2     2     2     2      2      2
+6  Diseased Margin    PSTR     2     2     2     2     2     2      2      2
+7  Diseased Margin    SSID     2     2     2     2     2     2      2      2
+8  Diseased Tissue    CNAT     2     2     2     2     2     2      2      2
+9  Diseased Tissue    DLAB     2     2     2     2     2     2      2      2
+10 Diseased Tissue    MCAV     2     2     2     2     2     2      2      2
+11 Diseased Tissue    ORBI     6     6     6     6     6     6      6      6
+12 Diseased Tissue    PAST     2     2     2     2     2     2      2      2
+13 Diseased Tissue    PSTR     2     2     2     2     2     2      2      2
+14 Diseased Tissue    SSID     2     2     2     2     2     2      2      2
+15         Healthy    CNAT     2     2     2     2     2     2      2      2
+16         Healthy    DLAB     2     2     2     2     2     2      2      2
+17         Healthy    MCAV     2     2     2     2     2     2      2      2
+18         Healthy    ORBI     6     6     6     6     6     6      6      6
+19         Healthy    PAST     2     2     2     2     2     2      2      2
+20         Healthy    PSTR     2     2     2     2     2     2      2      2
+21         Healthy    SSID     2     2     2     2     2     2      2      2
+> 
+> print(contingency_table)
+, ,  = CNAT
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = DLAB
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = MCAV
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = ORBI
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     6     6     6     6     6     6      6      6
+  Diseased Tissue     6     6     6     6     6     6      6      6
+  Healthy             6     6     6     6     6     6      6      6
+
+, ,  = PAST
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = PSTR
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = SSID
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+> # Read in the organized data
+> organized_data <- read.csv("organized_counts.csv")
+> 
+> # Check the structure and values
+> print(head(organized_data))
+  Month_Year   Health_Status Species Count
+1      12024 Diseased_margin    CNAT     0
+2      22024 Diseased_margin    CNAT     0
+3      42024 Diseased_margin    CNAT     0
+4      62024 Diseased_margin    CNAT     0
+5      82024 Diseased_margin    CNAT     0
+6      92023 Diseased_margin    CNAT     0
+> 
+> # Verify the total counts in the original file
+> sum(organized_data$Count)
+[1] 516
+> 
+> # Create a contingency table
+> contingency_table <- table(data$Health_Status, data$Month_Year, data$Species)
+> 
+> # Convert to a data frame and check the counts
+> counts_df <- as.data.frame(contingency_table)
+> colnames(counts_df) <- c("Health_Status", "Month_Year", "Species", "Count")
+> 
+> # View the counts to verify correctness
+> print(head(counts_df))
+    Health_Status Month_Year Species Count
+1 Diseased Margin      12024    CNAT     2
+2 Diseased Tissue      12024    CNAT     2
+3         Healthy      12024    CNAT     2
+4 Diseased Margin      22024    CNAT     2
+5 Diseased Tissue      22024    CNAT     2
+6         Healthy      22024    CNAT     2
+> sum(counts_df$Count)
+[1] 432
+> 
+> # Load necessary libraries
+> library(dplyr)
+> library(reshape2)
+> 
+> # Read the data
+> data <- read.csv("copy_CBC_samples.csv")
+> 
+> # Standardize Health_Status and Species
+> data <- data %>%
++   mutate(
++     Health_Status = case_when(
++       tolower(trimws(Health_Status)) == "healthy" ~ "Healthy",  # Combine into "Healthy"
++       tolower(trimws(Health_Status)) == "diseased_margin" ~ "Diseased Margin",  # Combine into "Diseased Margin"
++       tolower(trimws(Health_Status)) == "diseased_tissue" ~ "Diseased Tissue",  # Combine into "Diseased Tissue"
++       tolower(trimws(Health_Status)) == "past" ~ "PAST",  # Combine into "PAST"
++       TRUE ~ Health_Status  # Keep other statuses unchanged
++     ),
++     Species = case_when(
++       Species %in% c("OFAV", "OANN", "OFAV/OANN") ~ "ORBI",  # Combine into "ORBI"
++       TRUE ~ Species
++     )
++   )
+> 
+> # Use dplyr to count combinations of Health_Status, Month_Year, and Species
+> counts_df <- data %>%
++   count(Health_Status, Month_Year, Species, name = "Count")
+> 
+> # Check the sum of counts
+> print(sum(counts_df$Count))  # Compare this with the sum in your CSV
+[1] 516
+> 
+> # View the first few rows to verify counts
+> print(head(counts_df))
+    Health_Status Month_Year Species Count
+1 Diseased Margin      22024    MCAV     1
+2 Diseased Margin      22024    SSID     1
+3 Diseased Margin      42024    PSTR     2
+4 Diseased Margin      42024    SSID    16
+5 Diseased Margin      62024    MCAV     1
+6 Diseased Margin      62024    SSID     1
+> 
+> # Reshape the data to create a matrix
+> matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
+> 
+> # View the reshaped matrix
+> print(matrix_counts)
+     Health_Status Species 12024 22024 42024 62024 82024 92023 112023 122023
+1  Diseased Margin    DLAB     0     0     0     0     0     1      0      0
+2  Diseased Margin    MCAV     0     1     0     1     0     0      0      0
+3  Diseased Margin    ORBI     0     0     0     0     0     8      0      0
+4  Diseased Margin    PSTR     0     0     2     0     0     1      0      0
+5  Diseased Margin    SSID     0     1    16     1     0    16      0      0
+6  Diseased Tissue    DLAB     0     0     0     0     0     1      0      0
+7  Diseased Tissue    MCAV     0     1     0     1     0     0      0      0
+8  Diseased Tissue    ORBI     0     0     2     0     0     8      0      0
+9  Diseased Tissue    PSTR     0     0     2     0     0     1      0      0
+10 Diseased Tissue    SSID     0     1    11     3     0     9      0      0
+11         Healthy    CNAT     0     0     0     0     0     1      0      0
+12         Healthy    DLAB     0     0     8     0     0     7      0      0
+13         Healthy    MCAV    15     9    25     9    10    14     10     10
+14         Healthy    ORBI    20     7    41     7     7    11      7      7
+15         Healthy    PAST    11     6    19     7     6    15      8      8
+16         Healthy    PSTR    11     5    18     5     5     8      5      5
+17         Healthy    SSID    12     5    15     3     6     8      6      6
+> 
+> sum(counts_df$Count)
+[1] 516
+> write.csv()# Save the reshaped matrix to a CSV file
+Error in utils::write.table(col.names = NA, sep = ",", dec = ".", qmethod = "double") : 
+  argument "x" is missing, with no default
+> write.csv(matrix_counts, "reshaped_matrix_counts.csv", row.names = FALSE)
+> 
+> print(contingency_table)
+, ,  = CNAT
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = DLAB
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = MCAV
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = ORBI
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     6     6     6     6     6     6      6      6
+  Diseased Tissue     6     6     6     6     6     6      6      6
+  Healthy             6     6     6     6     6     6      6      6
+
+, ,  = PAST
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = PSTR
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+, ,  = SSID
+
+                 
+                  12024 22024 42024 62024 82024 92023 112023 122023
+  Diseased Margin     2     2     2     2     2     2      2      2
+  Diseased Tissue     2     2     2     2     2     2      2      2
+  Healthy             2     2     2     2     2     2      2      2
+
+> # Group by Health_Status and Species, then summarize the total count for each combination
+> combo_sums <- counts_df %>%
++   group_by(Health_Status, Species) %>%
++   summarize(Total_Count = sum(Count), .groups = 'drop')
+> 
+> # View the summarized data
+> print(combo_sums)
+# A tibble: 17 × 3
+   Health_Status   Species Total_Count
+   <chr>           <chr>         <int>
+ 1 Diseased Margin DLAB              1
+ 2 Diseased Margin MCAV              2
+ 3 Diseased Margin ORBI              8
+ 4 Diseased Margin PSTR              3
+ 5 Diseased Margin SSID             34
+ 6 Diseased Tissue DLAB              1
+ 7 Diseased Tissue MCAV              2
+ 8 Diseased Tissue ORBI             10
+ 9 Diseased Tissue PSTR              3
+10 Diseased Tissue SSID             24
+11 Healthy         CNAT              1
+12 Healthy         DLAB             15
+13 Healthy         MCAV            102
+14 Healthy         ORBI            107
+15 Healthy         PAST             80
+16 Healthy         PSTR             62
+17 Healthy         SSID             61
+> 
+> write.# Save the summary to a CSV file
+Error: object 'write.' not found
+> write.csv(combo_sums, "species_health_status_sums.csv", row.names = FALSE)
+> 
+2024-10-07 11:10:35.743 R[7400:339542] The class 'NSSavePanel' overrides the method identifier.  This method is implemented by class 'NSWindow'
+> 

@@ -1,0 +1,18 @@
+"Health_Status","Species","Total_Count"
+"Diseased Margin","DLAB",1
+"Diseased Margin","MCAV",2
+"Diseased Margin","ORBI",8
+"Diseased Margin","PSTR",3
+"Diseased Margin","SSID",34
+"Diseased Tissue","DLAB",1
+"Diseased Tissue","MCAV",2
+"Diseased Tissue","ORBI",10
+"Diseased Tissue","PSTR",3
+"Diseased Tissue","SSID",24
+"Healthy","CNAT",1
+"Healthy","DLAB",15
+"Healthy","MCAV",102
+"Healthy","ORBI",107
+"Healthy","PAST",80
+"Healthy","PSTR",62
+"Healthy","SSID",61
