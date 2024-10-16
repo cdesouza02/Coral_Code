@@ -1,32 +1,4 @@
 
-R version 4.4.1 (2024-06-14) -- "Race for Your Life"
-Copyright (C) 2024 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin20
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
-[R.app GUI 1.80 (8416) x86_64-apple-darwin20]
-
-Warning: namespace ‘lme4’ is not available and has been replaced
-by .GlobalEnv when processing object ‘null_transectmod’
-2024-10-07 10:35:30.119 R[7400:339542] +[IMKClient subclass]: chose IMKClient_Legacy
-[Workspace restored from /Users/carolinedesouza/.RData]
-[History restored from /Users/carolinedesouza/.Rapp.history]
-
-2024-10-07 10:35:31.931 R[7400:339542] +[IMKInputSession subclass]: chose IMKInputSession_Legacy
-2024-10-07 10:35:37.551 R[7400:339542] The class 'NSOpenPanel' overrides the method identifier.  This method is implemented by class 'NSWindow'
 > getwd()
 [1] "/Users/carolinedesouza"
 > setwd("/Users/carolinedesouza/Documents/SCTLD")
@@ -34,18 +6,6 @@ by .GlobalEnv when processing object ‘null_transectmod’
 > 
 > # Load necessary library
 > library(dplyr)
-
-Attaching package: ‘dplyr’
-
-The following objects are masked from ‘package:stats’:
-
-    filter, lag
-
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal, union
-
-> 
 > # Read the data from CSV file
 > data <- read.csv("copy_CBC_samples.csv")
 > 
@@ -57,9 +17,6 @@ The following objects are masked from ‘package:base’:
 > 
 > # Rename the columns for clarity
 > colnames(counts_df) <- c("Month_Year", "Health_Status", "Species", "Count")
-> prinprint(contingency_table)
-Error in prinprint(contingency_table) : 
-  could not find function "prinprint"
 > print(contingency_table)
 , ,  = CNAT
 
@@ -675,66 +632,7 @@ Run `rlang::last_trace()` to see where the error occurred.
 > 
 > # Reshape the data to create a matrix
 > matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
-> 
-> # View the matrix
-> print(matrix_counts)
-   Health_Status Species Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
-1          12024    CNAT               1               1               1               1       1       1
-2          12024    DLAB               1               1               1               1       1       1
-3          12024    MCAV               1               1               1               1       1       1
-4          12024    ORBI               3               3               3               3       3       3
-5          12024    PAST               1               1               1               1       1       1
-6          12024    PSTR               1               1               1               1       1       1
-7          12024    SSID               1               1               1               1       1       1
-8          22024    CNAT               1               1               1               1       1       1
-9          22024    DLAB               1               1               1               1       1       1
-10         22024    MCAV               1               1               1               1       1       1
-11         22024    ORBI               3               3               3               3       3       3
-12         22024    PAST               1               1               1               1       1       1
-13         22024    PSTR               1               1               1               1       1       1
-14         22024    SSID               1               1               1               1       1       1
-15         42024    CNAT               1               1               1               1       1       1
-16         42024    DLAB               1               1               1               1       1       1
-17         42024    MCAV               1               1               1               1       1       1
-18         42024    ORBI               3               3               3               3       3       3
-19         42024    PAST               1               1               1               1       1       1
-20         42024    PSTR               1               1               1               1       1       1
-21         42024    SSID               1               1               1               1       1       1
-22         62024    CNAT               1               1               1               1       1       1
-23         62024    DLAB               1               1               1               1       1       1
-24         62024    MCAV               1               1               1               1       1       1
-25         62024    ORBI               3               3               3               3       3       3
-26         62024    PAST               1               1               1               1       1       1
-27         62024    PSTR               1               1               1               1       1       1
-28         62024    SSID               1               1               1               1       1       1
-29         82024    CNAT               1               1               1               1       1       1
-30         82024    DLAB               1               1               1               1       1       1
-31         82024    MCAV               1               1               1               1       1       1
-32         82024    ORBI               3               3               3               3       3       3
-33         82024    PAST               1               1               1               1       1       1
-34         82024    PSTR               1               1               1               1       1       1
-35         82024    SSID               1               1               1               1       1       1
-36         92023    CNAT               1               1               1               1       1       1
-37         92023    DLAB               1               1               1               1       1       1
-38         92023    MCAV               1               1               1               1       1       1
-39         92023    ORBI               3               3               3               3       3       3
-40         92023    PAST               1               1               1               1       1       1
-41         92023    PSTR               1               1               1               1       1       1
-42         92023    SSID               1               1               1               1       1       1
-43        112023    CNAT               1               1               1               1       1       1
-44        112023    DLAB               1               1               1               1       1       1
-45        112023    MCAV               1               1               1               1       1       1
-46        112023    ORBI               3               3               3               3       3       3
-47        112023    PAST               1               1               1               1       1       1
-48        112023    PSTR               1               1               1               1       1       1
-49        112023    SSID               1               1               1               1       1       1
-50        122023    CNAT               1               1               1               1       1       1
-51        122023    DLAB               1               1               1               1       1       1
-52        122023    MCAV               1               1               1               1       1       1
-53        122023    ORBI               3               3               3               3       3       3
-54        122023    PAST               1               1               1               1       1       1
-55        122023    PSTR               1               1               1               1       1       1
-56        122023    SSID               1               1               1               1       1       1
+
 > # Standardize the Health_Status values and handle whitespace
 > data <- data %>%
 +   mutate(Health_Status = case_when(
@@ -762,63 +660,6 @@ Run `rlang::last_trace()` to see where the error occurred.
 > 
 > # View the matrix with correct labels
 > print(matrix_counts)
-   Health_Status Species Diseased_margin Diseased_Margin Diseased_tissue Diseased_Tissue healthy Healthy
-1          12024    CNAT               1               1               1               1       1       1
-2          12024    DLAB               1               1               1               1       1       1
-3          12024    MCAV               1               1               1               1       1       1
-4          12024    ORBI               3               3               3               3       3       3
-5          12024    PAST               1               1               1               1       1       1
-6          12024    PSTR               1               1               1               1       1       1
-7          12024    SSID               1               1               1               1       1       1
-8          22024    CNAT               1               1               1               1       1       1
-9          22024    DLAB               1               1               1               1       1       1
-10         22024    MCAV               1               1               1               1       1       1
-11         22024    ORBI               3               3               3               3       3       3
-12         22024    PAST               1               1               1               1       1       1
-13         22024    PSTR               1               1               1               1       1       1
-14         22024    SSID               1               1               1               1       1       1
-15         42024    CNAT               1               1               1               1       1       1
-16         42024    DLAB               1               1               1               1       1       1
-17         42024    MCAV               1               1               1               1       1       1
-18         42024    ORBI               3               3               3               3       3       3
-19         42024    PAST               1               1               1               1       1       1
-20         42024    PSTR               1               1               1               1       1       1
-21         42024    SSID               1               1               1               1       1       1
-22         62024    CNAT               1               1               1               1       1       1
-23         62024    DLAB               1               1               1               1       1       1
-24         62024    MCAV               1               1               1               1       1       1
-25         62024    ORBI               3               3               3               3       3       3
-26         62024    PAST               1               1               1               1       1       1
-27         62024    PSTR               1               1               1               1       1       1
-28         62024    SSID               1               1               1               1       1       1
-29         82024    CNAT               1               1               1               1       1       1
-30         82024    DLAB               1               1               1               1       1       1
-31         82024    MCAV               1               1               1               1       1       1
-32         82024    ORBI               3               3               3               3       3       3
-33         82024    PAST               1               1               1               1       1       1
-34         82024    PSTR               1               1               1               1       1       1
-35         82024    SSID               1               1               1               1       1       1
-36         92023    CNAT               1               1               1               1       1       1
-37         92023    DLAB               1               1               1               1       1       1
-38         92023    MCAV               1               1               1               1       1       1
-39         92023    ORBI               3               3               3               3       3       3
-40         92023    PAST               1               1               1               1       1       1
-41         92023    PSTR               1               1               1               1       1       1
-42         92023    SSID               1               1               1               1       1       1
-43        112023    CNAT               1               1               1               1       1       1
-44        112023    DLAB               1               1               1               1       1       1
-45        112023    MCAV               1               1               1               1       1       1
-46        112023    ORBI               3               3               3               3       3       3
-47        112023    PAST               1               1               1               1       1       1
-48        112023    PSTR               1               1               1               1       1       1
-49        112023    SSID               1               1               1               1       1       1
-50        122023    CNAT               1               1               1               1       1       1
-51        122023    DLAB               1               1               1               1       1       1
-52        122023    MCAV               1               1               1               1       1       1
-53        122023    ORBI               3               3               3               3       3       3
-54        122023    PAST               1               1               1               1       1       1
-55        122023    PSTR               1               1               1               1       1       1
-56        122023    SSID               1               1               1               1       1       1
 > 
 > # Fix column names manually if needed
 > colnames(matrix_counts)[1:2] <- c("Health_Status", "Species")
@@ -1370,96 +1211,6 @@ Run `rlang::last_trace()` to see where the error occurred.
 > # Rename the columns for clarity
 > colnames(counts_df) <- c("Health_Status", "Month_Year", "Species", "Count")
 > 
-> # Reshape the data to create a matrix
-> matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
-> 
-> # View the matrix
-> print(matrix_counts)
-     Health_Status Species 12024 22024 42024 62024 82024 92023 112023 122023
-1  Diseased Margin    CNAT     2     2     2     2     2     2      2      2
-2  Diseased Margin    DLAB     2     2     2     2     2     2      2      2
-3  Diseased Margin    MCAV     2     2     2     2     2     2      2      2
-4  Diseased Margin    ORBI     6     6     6     6     6     6      6      6
-5  Diseased Margin    PAST     2     2     2     2     2     2      2      2
-6  Diseased Margin    PSTR     2     2     2     2     2     2      2      2
-7  Diseased Margin    SSID     2     2     2     2     2     2      2      2
-8  Diseased Tissue    CNAT     2     2     2     2     2     2      2      2
-9  Diseased Tissue    DLAB     2     2     2     2     2     2      2      2
-10 Diseased Tissue    MCAV     2     2     2     2     2     2      2      2
-11 Diseased Tissue    ORBI     6     6     6     6     6     6      6      6
-12 Diseased Tissue    PAST     2     2     2     2     2     2      2      2
-13 Diseased Tissue    PSTR     2     2     2     2     2     2      2      2
-14 Diseased Tissue    SSID     2     2     2     2     2     2      2      2
-15         Healthy    CNAT     2     2     2     2     2     2      2      2
-16         Healthy    DLAB     2     2     2     2     2     2      2      2
-17         Healthy    MCAV     2     2     2     2     2     2      2      2
-18         Healthy    ORBI     6     6     6     6     6     6      6      6
-19         Healthy    PAST     2     2     2     2     2     2      2      2
-20         Healthy    PSTR     2     2     2     2     2     2      2      2
-21         Healthy    SSID     2     2     2     2     2     2      2      2
-> 
-> # Create a contingency table and check its structure
-> contingency_table <- table(data$Health_Status, data$Month_Year, data$Species)
-> 
-> # Check the structure of the contingency table
-> print(contingency_table)
-, ,  = CNAT
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = DLAB
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = MCAV
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = ORBI
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     6     6     6     6     6     6      6      6
-  Diseased Tissue     6     6     6     6     6     6      6      6
-  Healthy             6     6     6     6     6     6      6      6
-
-, ,  = PAST
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = PSTR
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = SSID
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-> 
 > # Convert the contingency table to a data frame and check the result
 > counts_df <- as.data.frame(contingency_table)
 > colnames(counts_df) <- c("Health_Status", "Month_Year", "Species", "Count")
@@ -1471,94 +1222,6 @@ Run `rlang::last_trace()` to see where the error occurred.
 4 Diseased Margin      22024    CNAT     2
 5 Diseased Tissue      22024    CNAT     2
 6         Healthy      22024    CNAT     2
-> 
-> # Ensure the reshaping groups properly by Health_Status and Species
-> matrix_counts <- dcast(counts_df, Health_Status + Species ~ Month_Year, value.var = "Count", fill = 0)
-> 
-> # Check the resulting matrix
-> print(matrix_counts)
-     Health_Status Species 12024 22024 42024 62024 82024 92023 112023 122023
-1  Diseased Margin    CNAT     2     2     2     2     2     2      2      2
-2  Diseased Margin    DLAB     2     2     2     2     2     2      2      2
-3  Diseased Margin    MCAV     2     2     2     2     2     2      2      2
-4  Diseased Margin    ORBI     6     6     6     6     6     6      6      6
-5  Diseased Margin    PAST     2     2     2     2     2     2      2      2
-6  Diseased Margin    PSTR     2     2     2     2     2     2      2      2
-7  Diseased Margin    SSID     2     2     2     2     2     2      2      2
-8  Diseased Tissue    CNAT     2     2     2     2     2     2      2      2
-9  Diseased Tissue    DLAB     2     2     2     2     2     2      2      2
-10 Diseased Tissue    MCAV     2     2     2     2     2     2      2      2
-11 Diseased Tissue    ORBI     6     6     6     6     6     6      6      6
-12 Diseased Tissue    PAST     2     2     2     2     2     2      2      2
-13 Diseased Tissue    PSTR     2     2     2     2     2     2      2      2
-14 Diseased Tissue    SSID     2     2     2     2     2     2      2      2
-15         Healthy    CNAT     2     2     2     2     2     2      2      2
-16         Healthy    DLAB     2     2     2     2     2     2      2      2
-17         Healthy    MCAV     2     2     2     2     2     2      2      2
-18         Healthy    ORBI     6     6     6     6     6     6      6      6
-19         Healthy    PAST     2     2     2     2     2     2      2      2
-20         Healthy    PSTR     2     2     2     2     2     2      2      2
-21         Healthy    SSID     2     2     2     2     2     2      2      2
-> 
-> print(contingency_table)
-, ,  = CNAT
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = DLAB
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = MCAV
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = ORBI
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     6     6     6     6     6     6      6      6
-  Diseased Tissue     6     6     6     6     6     6      6      6
-  Healthy             6     6     6     6     6     6      6      6
-
-, ,  = PAST
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = PSTR
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-, ,  = SSID
-
-                 
-                  12024 22024 42024 62024 82024 92023 112023 122023
-  Diseased Margin     2     2     2     2     2     2      2      2
-  Diseased Tissue     2     2     2     2     2     2      2      2
-  Healthy             2     2     2     2     2     2      2      2
-
-> # Read in the organized data
-> organized_data <- read.csv("organized_counts.csv")
 > 
 > # Check the structure and values
 > print(head(organized_data))
@@ -1607,7 +1270,6 @@ Run `rlang::last_trace()` to see where the error occurred.
 +       tolower(trimws(Health_Status)) == "healthy" ~ "Healthy",  # Combine into "Healthy"
 +       tolower(trimws(Health_Status)) == "diseased_margin" ~ "Diseased Margin",  # Combine into "Diseased Margin"
 +       tolower(trimws(Health_Status)) == "diseased_tissue" ~ "Diseased Tissue",  # Combine into "Diseased Tissue"
-+       tolower(trimws(Health_Status)) == "past" ~ "PAST",  # Combine into "PAST"
 +       TRUE ~ Health_Status  # Keep other statuses unchanged
 +     ),
 +     Species = case_when(
@@ -1617,15 +1279,15 @@ Run `rlang::last_trace()` to see where the error occurred.
 +   )
 > 
 > # Use dplyr to count combinations of Health_Status, Month_Year, and Species
-> counts_df <- data %>%
-+   count(Health_Status, Month_Year, Species, name = "Count")
-> 
-> # Check the sum of counts
-> print(sum(counts_df$Count))  # Compare this with the sum in your CSV
+ counts_df <- data %>%
+   count(Health_Status, Month_Year, Species, name = "Count")
+ 
+ # Check the sum of counts
+ print(sum(counts_df$Count))  # Compare this with the sum in your CSV
 [1] 516
-> 
-> # View the first few rows to verify counts
-> print(head(counts_df))
+ 
+ # View the first few rows to verify counts
+ print(head(counts_df))
     Health_Status Month_Year Species Count
 1 Diseased Margin      22024    MCAV     1
 2 Diseased Margin      22024    SSID     1

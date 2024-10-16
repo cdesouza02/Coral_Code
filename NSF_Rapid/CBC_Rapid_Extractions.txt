@@ -1,0 +1,80 @@
+
+ setwd("/Users/carolinedesouza/Documents/SCTLD/SCTLD_Samples/Sample_Data")
+ CBC_samples <- read.csv("CBC_samples.csv")
+ colnames(CBC_samples)
+ library(dplyr)
+ library(tidyverse)
+ library(reshape2)
+
+ unique(CBC_samples$Health_status)
+ 
+#filter in only colonies and species that were part of the rapid grant
+ filtered_samples <- CBC_samples %>%
+   filter(Sample_type %in% c("Core_RNAlater", "Core_EtOH"),
+          Species %in% c("PAST", "SSID", "PSTR", "MCAV", "OFAV", "OANN"),
+          NewTagNum %in% c("2", "3", "12", "24", "99", "55", "57", "60", "63", "68", 
+                           "69", "72", "73", "76", "79", "5", "10", "14", "20", "21", 
+                           "33", "34", "38", "39", "70", "66/41", "28", "30", "76", 
+                           "78", "79", "98", "25"))
+           Transect %in% c()
+     
+#check
+ unique(filtered_samples$Sample_type)   
+
+#clean data so Health Statuses match
+ filtered_samples <- filtered_samples %>%
+   mutate(Health_status = case_when(
+     tolower(trimws(Health_status)) == "healthy" ~ "Healthy",
+     tolower(trimws(Health_status)) == "diseased_tissue" ~ "Diseased_Tissue",
+     tolower(trimws(Health_status)) == "diseased_margin" ~ "Diseased_Margin",
+     TRUE ~ Health_status  # Keep other statuses unchanged
+   ))
+ 
+#check
+ unique(filtered_samples$Health_status)
+
+
+ # Create a contingency table
+ contingency_table <- table(filtered_samples$Month_year, filtered_samples$Health_status, filtered_samples$Species)
+ 
+ # Convert the contingency table to a data frame
+ counts_df <- as.data.frame(contingency_table)
+ 
+ # Rename the columns for clarity
+ colnames(counts_df) <- c("Month_year", "Health_status", "Species", "Count")
+
+ # View the organized data frame
+ print(head(counts_df))
+sum(counts_df$Count)
+
+ # Reshape the data to create a matrix
+ matrix_counts <- dcast(counts_df, Health_status + Species ~ Month_year, value.var = "Count", fill = 0)
+  print(matrix_counts)
+
+ # isolate counts by Health_status and Species
+ species_counts <- counts_df %>%
+   group_by(Health_status, Species) %>%
+   summarize(Total_Count = sum(Count))
+ print(species_counts)
+
+#Save species_counts and matrix_counts to a CSV file in Coral_Code
+ write.csv(species_counts, "species_counts.csv", row.names = FALSE)
+ write.csv(matrix_counts, "matrix_counts.csv", row.names = FALSE)
+ write.csv(species_counts, "/Users/carolinedesouza/Documents/SCTLD/Coral_Code/NSF_Rapid/species_counts.csv", row.names = FALSE)
+ write.csv(matrix_counts, "/Users/carolinedesouza/Documents/SCTLD/Coral_Code/NSF_Rapid/matrix_counts.csv", row.names = FALSE)
+
+# Filter out rows where Extraction_physical_location has values
+ filtered_samples <- filtered_samples %>%
+   filter(is.na(Extraction_physical_location) | Extraction_physical_location == "")
+ 
+# Create a count of occurrences from the filtered_samples
+ unextracted_counts <- filtered_samples %>%
+   group_by(Health_status, Species) %>%
+   summarize(Unextracted_Count = n(), .groups = 'drop')  # Count rows
+# Join the new counts with the existing summary_counts
+ species_counts <- species_counts %>%
+   left_join(unextracted_counts, by = c("Health_status", "Species"))
+ 
+# View and save the updated species_counts with Unextracted_Count
+ print(species_counts)
+ write.csv(species_counts, "/Users/carolinedesouza/Documents/SCTLD/Coral_Code/NSF_Rapid/species_counts.csv", row.names = FALSE)
