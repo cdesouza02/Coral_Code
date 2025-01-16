@@ -145,7 +145,8 @@ sankey
 
 
 
-				#manual sankey plot 
+				#DO NOT USE manual sankey plot 
+#DO NOT USE
 
 # Load necessary libraries
 library(networkD3)
