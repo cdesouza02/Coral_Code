@@ -1,0 +1,232 @@
+
+R version 4.3.3 (2024-02-29) -- "Angel Food Cake"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin20 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.80 (8340) x86_64-apple-darwin20]
+
+[Workspace restored from /Users/carolinedesouza/.RData]
+[History restored from /Users/carolinedesouza/Documents/SCTLD/Coral_Code/PANAMA_Code/.Rapp.history]
+
+2024-04-25 15:28:40.142 R[10437:387650] +[CATransaction synchronize] called within transaction
+> install.packages("dpylr")
+--- Please select a CRAN mirror for use in this session ---
+Warning message:
+package ‘dpylr’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages 
+> install.packages("tidyverse")
+trying URL 'https://repo.miserver.it.umich.edu/cran/bin/macosx/big-sur-x86_64/contrib/4.3/tidyverse_2.0.0.tgz'
+Content type 'application/octet-stream' length 428408 bytes (418 KB)
+==================================================
+downloaded 418 KB
+
+
+The downloaded binary packages are in
+	/var/folders/f9/y_zz8zn52tv0rsv598dscq580000gn/T//RtmpPTdmNR/downloaded_packages
+> install.packages("tidyr")
+trying URL 'https://repo.miserver.it.umich.edu/cran/bin/macosx/big-sur-x86_64/contrib/4.3/tidyr_1.3.1.tgz'
+Content type 'application/octet-stream' length 1321251 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+
+The downloaded binary packages are in
+	/var/folders/f9/y_zz8zn52tv0rsv598dscq580000gn/T//RtmpPTdmNR/downloaded_packages
+> install.packages("ggplot2")
+trying URL 'https://repo.miserver.it.umich.edu/cran/bin/macosx/big-sur-x86_64/contrib/4.3/ggplot2_3.5.1.tgz'
+Content type 'application/octet-stream' length 4966855 bytes (4.7 MB)
+==================================================
+downloaded 4.7 MB
+
+
+The downloaded binary packages are in
+	/var/folders/f9/y_zz8zn52tv0rsv598dscq580000gn/T//RtmpPTdmNR/downloaded_packages
+> install.packages("ggpattern")
+trying URL 'https://repo.miserver.it.umich.edu/cran/bin/macosx/big-sur-x86_64/contrib/4.3/ggpattern_1.0.1.tgz'
+Content type 'application/octet-stream' length 3202188 bytes (3.1 MB)
+==================================================
+downloaded 3.1 MB
+
+
+The downloaded binary packages are in
+	/var/folders/f9/y_zz8zn52tv0rsv598dscq580000gn/T//RtmpPTdmNR/downloaded_packages
+> install.packages("lme4")
+trying URL 'https://repo.miserver.it.umich.edu/cran/bin/macosx/big-sur-x86_64/contrib/4.3/lme4_1.1-35.3.tgz'
+Content type 'application/octet-stream' length 7124997 bytes (6.8 MB)
+==================================================
+downloaded 6.8 MB
+
+
+The downloaded binary packages are in
+	/var/folders/f9/y_zz8zn52tv0rsv598dscq580000gn/T//RtmpPTdmNR/downloaded_packages
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+> library(tidyr)
+> library(tidyverse)
+── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ readr     2.1.5
+✔ ggplot2   3.5.1     ✔ stringr   1.5.1
+✔ lubridate 1.9.3     ✔ tibble    3.2.1
+✔ purrr     1.0.2     
+── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(ggpattern)
+> library(lme4)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> getwd()
+[1] "/Users/carolinedesouza/Documents/SCTLD/Coral_Code/PANAMA_Code"
+> PAN.BDT_ColonyData_copy <- read.csv("PAN-BDT_ColonyData_copy.csv")
+> # Change the names of columns 092022_condition and 102023_condition
+> names(PAN.BDT_ColonyData_copy)[14:16] <- c("Sep_2022", "X092022_Percentage", "Oct_2023")
+> #making a data frame that isolates transect and condition
+> combined_colony_data <- PAN.BDT_ColonyData_copy %>%
++   select(Transect, Sep_2022, Oct_2023) %>%
++   pivot_longer(cols = c(Sep_2022, Oct_2023))
+> combined_colony_data
+# A tibble: 176 × 3
+   Transect  name     value   
+   <chr>     <chr>    <chr>   
+ 1 STRI Reef Sep_2022 Healthy 
+ 2 STRI Reef Oct_2023 Paled   
+ 3 STRI Reef Sep_2022 Healthy 
+ 4 STRI Reef Oct_2023 Bleached
+ 5 STRI Reef Sep_2022 Healthy 
+ 6 STRI Reef Oct_2023 Paled   
+ 7 STRI Reef Sep_2022 Healthy 
+ 8 STRI Reef Oct_2023 Bleached
+ 9 STRI Reef Sep_2022 Healthy 
+10 STRI Reef Oct_2023 Paled   
+# ℹ 166 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> #changing order of dates and condition
+> combined_colony_data$name <- factor(combined_colony_data$name, levels = c("Sep_2022", "Oct_2023"))
+> combined_colony_data$value <- factor(combined_colony_data$value, levels = cc("Bleached", "Paled", "Healthy"))
+Error in cc("Bleached", "Paled", "Healthy") : 
+  could not find function "cc"
+> 
+> # making plot
+> 
+> #define custom colors
+> my_colors <- c("blanchedalmond", "darkorange", "firebrick")
+> # Create the plot
+> combined_colony_plot <- ggplot(combined_colony_data) +
++   aes(x = name, fill = value) +
++   geom_bar() +
++   scale_fill_manual(values = my_colors) +
++   labs(x = "Date Sampled", y = "# of Colonies", title = "Bleaching of Coral Species Over Time", fill = "Condition") +
++   theme_minimal() +
++   theme(legend.position = "bottom", text = element_text(size=10),
++         plot.background = element_rect(fill = "lightgrey")) +  # Set the background color to light grey
++   facet_wrap(vars(Transect), ncol = 10L)
+> 
+> # Save the plot as a PNG file
+> ggsave("combined_colony_plot.png", plot = combined_colony_plot, width = 10, height = 6, units = "in", dpi = 300)
+>  combined_colony_data$value <- factor(combined_colony_data$value, levels = c("Bleached", "Paled", "Healthy"))
+> #changing order of dates and condition
+> combined_colony_data$name <- factor(combined_colony_data$name, levels = c("Sep_2022", "Oct_2023"))
+> combined_colony_data$value <- factor(combined_colony_data$value, levels = c("Bleached", "Paled", "Healthy"))
+> 
+> # making plot
+> 
+> #define custom colors
+> my_colors <- c("blanchedalmond", "darkorange", "firebrick")
+> # Create the plot
+> combined_colony_plot <- ggplot(combined_colony_data) +
++   aes(x = name, fill = value) +
++   geom_bar() +
++   scale_fill_manual(values = my_colors) +
++   labs(x = "Date Sampled", y = "# of Colonies", title = "Bleaching of Coral Species Over Time", fill = "Condition") +
++   theme_minimal() +
++   theme(legend.position = "bottom", text = element_text(size=10),
++         plot.background = element_rect(fill = "lightgrey")) +  # Set the background color to light grey
++   facet_wrap(vars(Transect), ncol = 10L)
+> 
+> # Save the plot as a PNG file
+> ggsave("combined_colony_plot.png", plot = combined_colony_plot, width = 10, height = 6, units = "in", dpi = 300)
+> #isolating T1 and T2
+> T1_T2_species <- PAN.BDT_ColonyData_copy %>%
++   filter(Transect %in% c("STRI Reef", "Juan Point Reef")) %>%
++   select(Species, Sep_2022, Oct_2023) %>%
++   pivot_longer(cols = c(Sep_2022, Oct_2023))
+> T1_T2_species
+# A tibble: 112 × 3
+   Species name     value   
+   <chr>   <chr>    <chr>   
+ 1 CNAT    Sep_2022 Healthy 
+ 2 CNAT    Oct_2023 Paled   
+ 3 CNAT    Sep_2022 Healthy 
+ 4 CNAT    Oct_2023 Bleached
+ 5 CNAT    Sep_2022 Healthy 
+ 6 CNAT    Oct_2023 Paled   
+ 7 CNAT    Sep_2022 Healthy 
+ 8 CNAT    Oct_2023 Bleached
+ 9 CNAT    Sep_2022 Healthy 
+10 CNAT    Oct_2023 Paled   
+# ℹ 102 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> #changing order of dates and condition
+> T1_T2_species$name <- factor(T1_T2_species$name, levels = c("Sep_2022", "Oct_2023"))
+> T1_T2_species$value <- factor(T1_T2_species$value, levels = c("Bleached", "Paled", "Healthy"))
+> 
+> # making plot
+> 
+> #define custom colors
+> my_colors <- c("blanchedalmond", "darkorange", "firebrick")
+> # Create the plot
+> T1_T2_species_plot <- ggplot(T1_T2_species) +
++   aes(x = name, fill = value) +
++   geom_bar() +
++   scale_fill_manual(values = my_colors) +
++   labs(x = "Date Sampled", y = "# of Colonies", title = "Bleaching of T1 and T2 Coral Species Over Time", fill = "Condition") +
++   theme_minimal() +
++   theme(legend.position = "bottom", text = element_text(size=10),
++         plot.background = element_rect(fill = "lightgrey")) +  # Set the background color to light grey
++   facet_wrap(vars(Species), ncol = 10L)
+> 
+> # Save the plot as a PNG file
+> ggsave("T1_T2_species_plot.png", plot = T1_T2_species_plot, width = 10, height = 6, units = "in", dpi = 300)
+2024-04-25 15:52:03.177 R[10437:387650] +[CATransaction synchronize] called within transaction
+2024-04-25 15:52:03.240 R[10437:387650] +[CATransaction synchronize] called within transaction
+2024-04-25 15:52:03.402 R[10437:387650] +[CATransaction synchronize] called within transaction
+2024-04-25 15:52:03.414 R[10437:387650] +[CATransaction synchronize] called within transaction
+2024-04-25 15:52:03.443 R[10437:387650] +[CATransaction synchronize] called within transaction
+2024-04-25 15:52:03.526 R[10437:387650] +[CATransaction synchronize] called within transaction
+2024-04-25 15:52:21.025 R[10437:387650] +[CATransaction synchronize] called within transaction
+2024-04-25 15:52:21.329 R[10437:387650] +[CATransaction synchronize] called within transaction
+> 
